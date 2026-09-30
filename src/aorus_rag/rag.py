@@ -24,13 +24,13 @@ class RunStats:
 
 
 class RAG:
-    def __init__(self, k: int = 5, mode: str = "hybrid"):
+    def __init__(self, k: int = 5, mode: str = "hybrid", prune: bool = True):
         self.retriever = Retriever()
-        self.k, self.mode = k, mode
+        self.k, self.mode, self.prune = k, mode, prune
 
     def answer(self, query: str, stats: RunStats) -> Iterator[str]:
         t0 = time.perf_counter()
-        stats.hits = self.retriever.search(query, k=self.k, mode=self.mode)
+        stats.hits = self.retriever.search(query, k=self.k, mode=self.mode, prune=self.prune)
         stats.retrieval_ms = 1000 * (time.perf_counter() - t0)
         messages = build_messages(query, stats.hits)
         yield from stream_chat(messages, stats.gen)

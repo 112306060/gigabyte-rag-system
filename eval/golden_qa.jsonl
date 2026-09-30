@@ -1,0 +1,42 @@
+{"id": "q01", "query": "這台筆電多重？", "lang": "zh", "category": "basic", "gold_chunks": ["row15"], "must_include": [["2.5"]]}
+{"id": "q02", "query": "電池容量是多少？", "lang": "zh", "category": "basic", "gold_chunks": ["row12"], "must_include": [["99wh"]]}
+{"id": "q03", "query": "處理器是哪一顆？", "lang": "zh", "category": "basic", "gold_chunks": ["row01"], "must_include": [["275hx"]]}
+{"id": "q04", "query": "螢幕解析度多少？", "lang": "zh", "category": "basic", "gold_chunks": ["row03"], "must_include": [["2560×1600", "2560x1600"]]}
+{"id": "q05", "query": "記憶體最大可以擴充到多少？", "lang": "zh", "category": "basic", "gold_chunks": ["row04"], "must_include": [["64gb"]]}
+{"id": "q06", "query": "充電器是幾瓦的？", "lang": "zh", "category": "colloquial", "gold_chunks": ["row13"], "must_include": [["330w"]]}
+{"id": "q07", "query": "機身尺寸是多少？", "lang": "zh", "category": "basic", "gold_chunks": ["row14"], "must_include": [["357"], ["254"]]}
+{"id": "q08", "query": "支援藍牙嗎？是哪個版本？", "lang": "zh", "category": "basic", "gold_chunks": ["row09"], "must_include": [["5.4"]]}
+{"id": "q09", "query": "視訊鏡頭支援人臉辨識嗎？", "lang": "zh", "category": "basic", "gold_chunks": ["row10"], "must_include": [["windowshello", "人臉"]]}
+{"id": "q10", "query": "鍵盤有背光嗎？", "lang": "zh", "category": "basic", "gold_chunks": ["row06"], "must_include": [["rgb"]]}
+{"id": "q11", "query": "這台是什麼顏色？", "lang": "zh", "category": "basic", "gold_chunks": ["row16"], "must_include": [["darktide"]]}
+{"id": "q12", "query": "喇叭規格是什麼？", "lang": "zh", "category": "colloquial", "gold_chunks": ["row08"], "must_include": [["2w"]]}
+{"id": "q13", "query": "What CPU does it use?", "lang": "en", "category": "basic", "gold_chunks": ["row01"], "must_include": [["275hx"]]}
+{"id": "q14", "query": "What is the battery capacity?", "lang": "en", "category": "basic", "gold_chunks": ["row12"], "must_include": [["99"]]}
+{"id": "q15", "query": "How heavy is the laptop?", "lang": "en", "category": "basic", "gold_chunks": ["row15"], "must_include": [["2.5"]]}
+{"id": "q16", "query": "What is the screen refresh rate?", "lang": "en", "category": "basic", "gold_chunks": ["row03"], "must_include": [["240"]]}
+{"id": "q17", "query": "Does it support Wi-Fi 7?", "lang": "en", "category": "basic", "gold_chunks": ["row09"], "must_include": [["wi-fi7", "wifi7", "802.11be"]]}
+{"id": "q18", "query": "How many cores and threads does the processor have?", "lang": "en", "category": "basic", "gold_chunks": ["row01"], "must_include": [["24"]]}
+{"id": "q19", "query": "What security features does it have?", "lang": "en", "category": "basic", "gold_chunks": ["row11"], "must_include": [["tpm"]]}
+{"id": "q20", "query": "What storage options are available?", "lang": "en", "category": "basic", "gold_chunks": ["row05"], "must_include": [["4tb"]]}
+{"id": "q21", "query": "這台的 RAM 是 DDR5 嗎？", "lang": "mix", "category": "mixed", "gold_chunks": ["row04"], "must_include": [["ddr5"]]}
+{"id": "q22", "query": "螢幕有支援 G-SYNC 嗎？", "lang": "mix", "category": "mixed", "gold_chunks": ["row03"], "must_include": [["g-sync"]]}
+{"id": "q23", "query": "SSD 最大支援多少 TB？", "lang": "mix", "category": "mixed", "gold_chunks": ["row05"], "must_include": [["4tb"]]}
+{"id": "q24", "query": "有 HDMI 嗎？是什麼版本？", "lang": "mix", "category": "mixed", "gold_chunks": ["row07"], "must_include": [["2.1"]]}
+{"id": "q25", "query": "Thunderbolt 5 的孔在哪一側？", "lang": "mix", "category": "mixed", "gold_chunks": ["row07"], "must_include": [["左", "left"]]}
+{"id": "q26", "query": "OLED 面板的亮度是多少 nits？", "lang": "mix", "category": "mixed", "gold_chunks": ["row03"], "must_include": [["500"]]}
+{"id": "q27", "query": "BXH 的顯卡功耗是多少？", "lang": "zh", "category": "sku", "gold_chunks": ["row02_BXH", "row02_variants"], "must_include": [["140"]]}
+{"id": "q28", "query": "5080 版本的顯存多大？", "lang": "zh", "category": "sku", "gold_chunks": ["row02_BYH", "row02_variants"], "must_include": [["16gb"]]}
+{"id": "q29", "query": "What GPU does the BZH model have?", "lang": "en", "category": "sku", "gold_chunks": ["row02_BZH", "row02_variants"], "must_include": [["5090"]]}
+{"id": "q30", "query": "三個型號差在哪？", "lang": "zh", "category": "sku", "gold_chunks": ["row02_variants"], "must_include": [["5090"], ["5080"], ["5070"]]}
+{"id": "q31", "query": "顯卡是什麼？", "lang": "zh", "category": "sku", "gold_chunks": ["row02_variants"], "must_include": [["5090"], ["5080"], ["5070"]]}
+{"id": "q32", "query": "RTX 5070 Ti 版本的電池容量跟其他型號一樣嗎？", "lang": "mix", "category": "sku", "gold_chunks": ["row12"], "must_include": [["99"]]}
+{"id": "q33", "query": "這台有幾個 USB 孔？", "lang": "zh", "category": "aggregate", "gold_chunks": ["row07"], "must_include": [["4個", "4usb", "four"]]}
+{"id": "q34", "query": "How many Type-C ports are there?", "lang": "en", "category": "aggregate", "gold_chunks": ["row07"], "must_include": [["2type-c", "two", "2ports", "type-cx2"]]}
+{"id": "q35", "query": "可以插記憶卡嗎？", "lang": "zh", "category": "colloquial", "gold_chunks": ["row07"], "must_include": [["microsd"]]}
+{"id": "q36", "query": "介紹一下這台筆電", "lang": "zh", "category": "aggregate", "gold_chunks": ["overview"], "must_include": [["275hx"], ["5090"]]}
+{"id": "q37", "query": "How much does it cost?", "lang": "en", "category": "unanswerable", "gold_chunks": [], "must_include": []}
+{"id": "q38", "query": "電池續航力可以撐幾小時？", "lang": "zh", "category": "unanswerable", "gold_chunks": [], "must_include": []}
+{"id": "q39", "query": "CPU 的 TDP 是多少瓦？", "lang": "mix", "category": "unanswerable", "gold_chunks": [], "must_include": []}
+{"id": "q40", "query": "螢幕是觸控螢幕嗎？", "lang": "zh", "category": "unanswerable", "gold_chunks": [], "must_include": []}
+{"id": "q41", "query": "When was this laptop released?", "lang": "en", "category": "unanswerable", "gold_chunks": [], "must_include": []}
+{"id": "q42", "query": "有指紋辨識嗎？", "lang": "zh", "category": "unanswerable", "gold_chunks": [], "must_include": []}
