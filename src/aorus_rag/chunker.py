@@ -100,11 +100,13 @@ def build_chunks(records: list[dict]) -> list[Chunk]:
             ))
         # Side-by-side comparison, for "which GPUs are available / 差在哪" questions.
         variant_lines = [f"{g['sku']}: {', '.join(g['lines'])}" for g in group]
-        chunks.append(_make(
+        c = _make(
             f"row{row:02d}_variants", "variants", key_en, key_zh, SKUS,
             variant_lines, first["notes"],
             f"各型號比較 model comparison: {ALL_SKUS_LABEL}，其餘規格皆相同 other specs identical",
-        ))
+        )
+        c.embed_text += " 差異 差在哪 不同 區別 比較 版本 選擇 哪個 difference compare versions variants"
+        chunks.append(c)
 
     chunks.append(_overview(records))
     return chunks

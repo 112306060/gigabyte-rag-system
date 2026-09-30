@@ -1,0 +1,27 @@
+{
+  "embed_model": "bge-m3-Q8_0",
+  "dim": 1024,
+  "chunk_ids": [
+    "row00",
+    "row01",
+    "row02_BZH",
+    "row02_BYH",
+    "row02_BXH",
+    "row02_variants",
+    "row03",
+    "row04",
+    "row05",
+    "row06",
+    "row07",
+    "row08",
+    "row09",
+    "row10",
+    "row11",
+    "row12",
+    "row13",
+    "row14",
+    "row15",
+    "row16",
+    "overview"
+  ]
+}
