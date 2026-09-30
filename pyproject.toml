@@ -1,0 +1,21 @@
+[project]
+name = "aorus-rag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "David Liu", email = "david7471906@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "httpx>=0.28.1",
+    "numpy>=2.5.3",
+]
+
+[project.scripts]
+aorus-rag = "aorus_rag:main"
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13.0"]
+build-backend = "uv_build"
