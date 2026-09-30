@@ -18,6 +18,7 @@ Each chunk has two texts:
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import asdict, dataclass
 from itertools import groupby
 from pathlib import Path
@@ -65,12 +66,52 @@ def _body(lines: list[str]) -> str:
     return "\n".join(f"- {l}" if not l.endswith(":") else l for l in lines)
 
 
+def _io_summary(lines: list[str]) -> list[str]:
+    """Pre-compute port counts from the I/O list.
+
+    A 3B model miscounts when it must filter ("is MicroSD a USB port?") and sum across
+    sides at answer time, so we do the counting deterministically at index time.
+    """
+    side = ""
+    usb_a, usb_c, others = [], [], []
+    for line in lines:
+        if line.endswith(":"):
+            side = "左側 left" if line.lower().startswith("left") else "右側 right"
+            continue
+        m = re.match(r"(\d+)\s*x\s*(.+)", line)
+        if not m:
+            continue
+        n, desc = int(m.group(1)), m.group(2)
+        if "Type-C" in desc:
+            tb = re.search(r"Thunderbolt™?\s*(\d)", desc)
+            usb_c.append((n, side, f"Thunderbolt™{tb.group(1)}" if tb else "USB-C"))
+        elif "Type-A" in desc:
+            usb_a.append((n, side))
+        else:
+            name = re.split(r"\s+support|\s*\(", desc)[0]
+            others.append(f"{name} x{n}")
+    n_a, n_c = sum(x[0] for x in usb_a), sum(x[0] for x in usb_c)
+    a_detail = "、".join(f"{s} x{n}" for n, s in usb_a)
+    c_detail = "、".join(f"{t} x{n}（{s}）" for n, s, t in usb_c)
+    return [
+        "統計 Summary（由上方清單計算 computed from the list above）:",
+        f"USB 連接埠共 {n_a + n_c} 個 total USB ports: {n_a + n_c}",
+        f"Type-A (USB3.2 Gen2) x{n_a}：{a_detail}",
+        f"Type-C x{n_c}：{c_detail}",
+        f"其他連接埠 other ports（非 USB）: {', '.join(others)}",
+    ]
+
+
 def _make(cid, ctype, key_en, key_zh, skus, lines, notes, scope) -> Chunk:
     header = f"產品 Product: {PRODUCT}（{scope}）\n規格項目 Spec: {key_zh} / {key_en}"
+    if key_en == "I/O Port":
+        lines = lines + _io_summary(lines)
     body = _body(lines)
     text = f"{header}\n{body}"
     if notes:
-        text += "\n附註 Notes: " + " ".join(n.lstrip("*") for n in notes)
+        # Label footnotes explicitly: otherwise the model may answer with the long
+        # disclaimer sentence instead of the short spec value (e.g. "~2.5 kg").
+        text += "\n附註（補充說明，非規格值）Footnote: " + " ".join(n.lstrip("*") for n in notes)
     aliases = " ".join(KEY_ALIASES.get(key_en, []))
     embed_text = f"{header}\n{body}\n關鍵字 Keywords: {aliases}"
     return Chunk(cid, ctype, key_en, key_zh, skus, text, embed_text)

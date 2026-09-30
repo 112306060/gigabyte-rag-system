@@ -1,0 +1,179 @@
+﻿############################## QUERY: 這台筆電多重？
+retrieved: [('row15', 0.62), ('overview', 0.548), ('row02_BXH', 0.509), ('row12', 0.455), ('row02_BZH', 0.501)]
+
+===== [system] =====
+你是技嘉 GIGABYTE「AORUS MASTER 16 AM6H」筆記型電腦的產品規格助理。
+本產品有 3 個型號：BZH（NVIDIA® GeForce RTX™ 5090 Laptop GPU）、BYH（NVIDIA® GeForce RTX™ 5080 Laptop GPU）、BXH（NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU）；各型號只有顯示晶片不同，其餘規格完全相同。
+
+回答規則：
+1. 只能根據使用者提供的 <參考資料> 回答，不可使用外部知識，不可推測或編造任何數值。
+2. 若 <參考資料> 中沒有答案，中文問題請回答「規格資料中未提及此資訊。」，英文問題請回答 "This information is not listed in the specifications."，不要猜測。
+3. 數值、型號與單位照原文保留（例如 2560×1600、99Wh、Thunderbolt™5）。
+4. 若問題與顯示晶片有關但未指定型號，請分別列出各型號的規格。
+5. 回答簡潔、直接切入重點，項目多時使用條列。
+6. 在引用資料的句子後標註來源編號，例如 [1]。
+
+===== [user] =====
+<參考資料>
+[1] 產品 Product: AORUS MASTER 16 AM6H（全型號共用 all models: BZH / BYH / BXH）
+規格項目 Spec: 重量 / Weight
+- ~2.5 kg
+附註 Notes: The weight of the laptop may vary according to the configuration, manufacturing process and measurement method, please refer to the actual situation.
+
+[2] 產品 Product: AORUS MASTER 16 AM6H（型號 models: BZH / BYH / BXH）
+規格總覽 Overview
+- 中央處理器 CPU: Intel® Core™ Ultra 9 Processor 275HX (36MB cache, up to 5.4 GHz, 24 cores, 24 threads)
+- 顯示晶片 Video Graphics: NVIDIA® GeForce RTX™ 5090 Laptop GPU / NVIDIA® GeForce RTX™ 5080 Laptop GPU / NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU
+- 顯示器 Display: 16" 16:10; OLED WQXGA (2560×1600) 240Hz, 1ms, DCIP-3 100%, 500nits (peak), 1,000,000:1
+- 記憶體 System Memory: Up to 64GB DDR5 5600MHz; 2x SO-DIMM sockets for expansion
+- 儲存裝置 Storage: 1x PCIe Gen5 M.2 slot; 1x PCIe Gen4x4 M.2 slots; Up to 4TB PCIe NVMe™ M.2 SSD
+- 電池 Battery: Li-ion 99Wh
+- 重量 Weight: ~2.5 kg
+
+[3] 產品 Product: AORUS MASTER 16 AM6H（型號 model: AORUS MASTER 16 BXH）
+規格項目 Spec: 顯示晶片 / Video Graphics
+- NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU
+- 12GB GDDR7
+- 140W Maximum Graphics Power with Dynamic Boost*
+- AI Boost : 1962 MHz (1762 MHz Boost Clock + 200 MHz OC)*
+附註 Notes: May vary by scenario
+
+[4] 產品 Product: AORUS MASTER 16 AM6H（全型號共用 all models: BZH / BYH / BXH）
+規格項目 Spec: 電池 / Battery
+- Li-ion 99Wh
+
+[5] 產品 Product: AORUS MASTER 16 AM6H（型號 model: AORUS MASTER 16 BZH）
+規格項目 Spec: 顯示晶片 / Video Graphics
+- NVIDIA® GeForce RTX™ 5090 Laptop GPU
+- 24GB GDDR7
+- 175W Maximum Graphics Power with Dynamic Boost*
+- AI Boost : 1797 MHz (1597 MHz Boost Clock + 200 MHz OC)*
+附註 Notes: May vary by scenario
+</參考資料>
+
+問題：這台筆電多重？
+
+請使用繁體中文（台灣用語）回答。
+
+############################## QUERY: How much does it cost?
+retrieved: [('row00', 0.389), ('row02_variants', 0.396), ('row02_BYH', 0.386), ('row02_BXH', 0.388), ('row02_BZH', 0.386)]
+
+===== [system] =====
+你是技嘉 GIGABYTE「AORUS MASTER 16 AM6H」筆記型電腦的產品規格助理。
+本產品有 3 個型號：BZH（NVIDIA® GeForce RTX™ 5090 Laptop GPU）、BYH（NVIDIA® GeForce RTX™ 5080 Laptop GPU）、BXH（NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU）；各型號只有顯示晶片不同，其餘規格完全相同。
+
+回答規則：
+1. 只能根據使用者提供的 <參考資料> 回答，不可使用外部知識，不可推測或編造任何數值。
+2. 若 <參考資料> 中沒有答案，中文問題請回答「規格資料中未提及此資訊。」，英文問題請回答 "This information is not listed in the specifications."，不要猜測。
+3. 數值、型號與單位照原文保留（例如 2560×1600、99Wh、Thunderbolt™5）。
+4. 若問題與顯示晶片有關但未指定型號，請分別列出各型號的規格。
+5. 回答簡潔、直接切入重點，項目多時使用條列。
+6. 在引用資料的句子後標註來源編號，例如 [1]。
+
+===== [user] =====
+<參考資料>
+[1] 產品 Product: AORUS MASTER 16 AM6H（全型號共用 all models: BZH / BYH / BXH）
+規格項目 Spec: 作業系統 / OS
+- Windows 11 Pro (GIGABYTE recommends Windows 11 Pro for business.)
+- Windows 11 Home
+- UEFI Shell OS
+
+[2] 產品 Product: AORUS MASTER 16 AM6H（各型號比較 model comparison: BZH / BYH / BXH，其餘規格皆相同 other specs identical）
+規格項目 Spec: 顯示晶片 / Video Graphics
+- AORUS MASTER 16 BZH: NVIDIA® GeForce RTX™ 5090 Laptop GPU, 24GB GDDR7, 175W Maximum Graphics Power with Dynamic Boost*, AI Boost : 1797 MHz (1597 MHz Boost Clock + 200 MHz OC)*
+- AORUS MASTER 16 BYH: NVIDIA® GeForce RTX™ 5080 Laptop GPU, 16GB GDDR7, 175W Maximum Graphics Power with Dynamic Boost*, AI Boost : 1902 MHz (1702 MHz Boost Clock + 200 MHz OC)*
+- AORUS MASTER 16 BXH: NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU, 12GB GDDR7, 140W Maximum Graphics Power with Dynamic Boost*, AI Boost : 1962 MHz (1762 MHz Boost Clock + 200 MHz OC)*
+附註 Notes: May vary by scenario
+
+[3] 產品 Product: AORUS MASTER 16 AM6H（型號 model: AORUS MASTER 16 BYH）
+規格項目 Spec: 顯示晶片 / Video Graphics
+- NVIDIA® GeForce RTX™ 5080 Laptop GPU
+- 16GB GDDR7
+- 175W Maximum Graphics Power with Dynamic Boost*
+- AI Boost : 1902 MHz (1702 MHz Boost Clock + 200 MHz OC)*
+附註 Notes: May vary by scenario
+
+[4] 產品 Product: AORUS MASTER 16 AM6H（型號 model: AORUS MASTER 16 BXH）
+規格項目 Spec: 顯示晶片 / Video Graphics
+- NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU
+- 12GB GDDR7
+- 140W Maximum Graphics Power with Dynamic Boost*
+- AI Boost : 1962 MHz (1762 MHz Boost Clock + 200 MHz OC)*
+附註 Notes: May vary by scenario
+
+[5] 產品 Product: AORUS MASTER 16 AM6H（型號 model: AORUS MASTER 16 BZH）
+規格項目 Spec: 顯示晶片 / Video Graphics
+- NVIDIA® GeForce RTX™ 5090 Laptop GPU
+- 24GB GDDR7
+- 175W Maximum Graphics Power with Dynamic Boost*
+- AI Boost : 1797 MHz (1597 MHz Boost Clock + 200 MHz OC)*
+附註 Notes: May vary by scenario
+</參考資料>
+
+問題：How much does it cost?
+
+Please answer in English.
+
+############################## QUERY: BXH 的顯卡功耗是多少
+retrieved: [('row02_BXH', 0.569), ('row02_variants', 0.566), ('row02_BZH', 0.537), ('row02_BYH', 0.519), ('overview', 0.54)]
+
+===== [system] =====
+你是技嘉 GIGABYTE「AORUS MASTER 16 AM6H」筆記型電腦的產品規格助理。
+本產品有 3 個型號：BZH（NVIDIA® GeForce RTX™ 5090 Laptop GPU）、BYH（NVIDIA® GeForce RTX™ 5080 Laptop GPU）、BXH（NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU）；各型號只有顯示晶片不同，其餘規格完全相同。
+
+回答規則：
+1. 只能根據使用者提供的 <參考資料> 回答，不可使用外部知識，不可推測或編造任何數值。
+2. 若 <參考資料> 中沒有答案，中文問題請回答「規格資料中未提及此資訊。」，英文問題請回答 "This information is not listed in the specifications."，不要猜測。
+3. 數值、型號與單位照原文保留（例如 2560×1600、99Wh、Thunderbolt™5）。
+4. 若問題與顯示晶片有關但未指定型號，請分別列出各型號的規格。
+5. 回答簡潔、直接切入重點，項目多時使用條列。
+6. 在引用資料的句子後標註來源編號，例如 [1]。
+
+===== [user] =====
+<參考資料>
+[1] 產品 Product: AORUS MASTER 16 AM6H（型號 model: AORUS MASTER 16 BXH）
+規格項目 Spec: 顯示晶片 / Video Graphics
+- NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU
+- 12GB GDDR7
+- 140W Maximum Graphics Power with Dynamic Boost*
+- AI Boost : 1962 MHz (1762 MHz Boost Clock + 200 MHz OC)*
+附註 Notes: May vary by scenario
+
+[2] 產品 Product: AORUS MASTER 16 AM6H（各型號比較 model comparison: BZH / BYH / BXH，其餘規格皆相同 other specs identical）
+規格項目 Spec: 顯示晶片 / Video Graphics
+- AORUS MASTER 16 BZH: NVIDIA® GeForce RTX™ 5090 Laptop GPU, 24GB GDDR7, 175W Maximum Graphics Power with Dynamic Boost*, AI Boost : 1797 MHz (1597 MHz Boost Clock + 200 MHz OC)*
+- AORUS MASTER 16 BYH: NVIDIA® GeForce RTX™ 5080 Laptop GPU, 16GB GDDR7, 175W Maximum Graphics Power with Dynamic Boost*, AI Boost : 1902 MHz (1702 MHz Boost Clock + 200 MHz OC)*
+- AORUS MASTER 16 BXH: NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU, 12GB GDDR7, 140W Maximum Graphics Power with Dynamic Boost*, AI Boost : 1962 MHz (1762 MHz Boost Clock + 200 MHz OC)*
+附註 Notes: May vary by scenario
+
+[3] 產品 Product: AORUS MASTER 16 AM6H（型號 model: AORUS MASTER 16 BZH）
+規格項目 Spec: 顯示晶片 / Video Graphics
+- NVIDIA® GeForce RTX™ 5090 Laptop GPU
+- 24GB GDDR7
+- 175W Maximum Graphics Power with Dynamic Boost*
+- AI Boost : 1797 MHz (1597 MHz Boost Clock + 200 MHz OC)*
+附註 Notes: May vary by scenario
+
+[4] 產品 Product: AORUS MASTER 16 AM6H（型號 model: AORUS MASTER 16 BYH）
+規格項目 Spec: 顯示晶片 / Video Graphics
+- NVIDIA® GeForce RTX™ 5080 Laptop GPU
+- 16GB GDDR7
+- 175W Maximum Graphics Power with Dynamic Boost*
+- AI Boost : 1902 MHz (1702 MHz Boost Clock + 200 MHz OC)*
+附註 Notes: May vary by scenario
+
+[5] 產品 Product: AORUS MASTER 16 AM6H（型號 models: BZH / BYH / BXH）
+規格總覽 Overview
+- 中央處理器 CPU: Intel® Core™ Ultra 9 Processor 275HX (36MB cache, up to 5.4 GHz, 24 cores, 24 threads)
+- 顯示晶片 Video Graphics: NVIDIA® GeForce RTX™ 5090 Laptop GPU / NVIDIA® GeForce RTX™ 5080 Laptop GPU / NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU
+- 顯示器 Display: 16" 16:10; OLED WQXGA (2560×1600) 240Hz, 1ms, DCIP-3 100%, 500nits (peak), 1,000,000:1
+- 記憶體 System Memory: Up to 64GB DDR5 5600MHz; 2x SO-DIMM sockets for expansion
+- 儲存裝置 Storage: 1x PCIe Gen5 M.2 slot; 1x PCIe Gen4x4 M.2 slots; Up to 4TB PCIe NVMe™ M.2 SSD
+- 電池 Battery: Li-ion 99Wh
+- 重量 Weight: ~2.5 kg
+</參考資料>
+
+問題：BXH 的顯卡功耗是多少
+
+請使用繁體中文（台灣用語）回答。
+

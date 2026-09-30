@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-aorus-rag = "aorus_rag:main"
+aorus-rag = "aorus_rag.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.12.21,<0.13.0"]
