@@ -31,7 +31,7 @@
 {"id": "q31", "query": "顯卡是什麼？", "lang": "zh", "category": "sku", "gold_chunks": ["row02_variants"], "must_include": [["5090"], ["5080"], ["5070"]]}
 {"id": "q32", "query": "RTX 5070 Ti 版本的電池容量跟其他型號一樣嗎？", "lang": "mix", "category": "sku", "gold_chunks": ["row12"], "must_include": [["99"]]}
 {"id": "q33", "query": "這台有幾個 USB 孔？", "lang": "zh", "category": "aggregate", "gold_chunks": ["row07"], "must_include": [["4個", "4usb", "four"]]}
-{"id": "q34", "query": "How many Type-C ports are there?", "lang": "en", "category": "aggregate", "gold_chunks": ["row07"], "must_include": [["2type-c", "two", "2ports", "type-cx2"]]}
+{"id": "q34", "query": "How many Type-C ports are there?", "lang": "en", "category": "aggregate", "gold_chunks": ["row07"], "must_include": [["2type-c", "two", "2ports", "type-cx2", "re:^2(?![0-9])"]]}
 {"id": "q35", "query": "可以插記憶卡嗎？", "lang": "zh", "category": "colloquial", "gold_chunks": ["row07"], "must_include": [["microsd"]]}
 {"id": "q36", "query": "介紹一下這台筆電", "lang": "zh", "category": "aggregate", "gold_chunks": ["overview"], "must_include": [["275hx"], ["5090"]]}
 {"id": "q37", "query": "How much does it cost?", "lang": "en", "category": "unanswerable", "gold_chunks": [], "must_include": []}

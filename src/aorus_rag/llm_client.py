@@ -31,32 +31,45 @@ class GenStats:
 
 
 def stream_chat(messages: list[dict], stats: GenStats, *, temperature: float = 0.1,
-                max_tokens: int = 512) -> Iterator[str]:
-    """Yield content tokens as they arrive; fill `stats` when the stream ends."""
+                max_tokens: int = 512, extra: dict | None = None) -> Iterator[str]:
+    """Yield content tokens as they arrive; fill `stats` when the stream ends.
+
+    `extra` is merged into the request body (e.g. {"ignore_eos": True} for throughput tests).
+    """
     payload = {
         "messages": messages,
         "stream": True,
         "temperature": temperature,
         "max_tokens": max_tokens,
         "cache_prompt": True,  # reuse KV cache for the shared system-prompt prefix
+        **(extra or {}),
     }
     t0 = time.perf_counter()
     t_first = t_last = None
-    with _client.stream("POST", CHAT_URL, json=payload) as resp:
-        resp.raise_for_status()
-        for line in resp.iter_lines():
-            if not line.startswith("data: ") or line == "data: [DONE]":
-                continue
-            event = json.loads(line[len("data: "):])
-            if "timings" in event:
-                stats.server = event["timings"]
-            for choice in event.get("choices", []):
-                token = choice.get("delta", {}).get("content")
-                if token:
-                    t_last = time.perf_counter()
-                    if t_first is None:
-                        t_first = t_last
-                    yield token
+    for attempt in range(2):
+        try:
+            with _client.stream("POST", CHAT_URL, json=payload) as resp:
+                resp.raise_for_status()
+                for line in resp.iter_lines():
+                    if not line.startswith("data: ") or line == "data: [DONE]":
+                        continue
+                    event = json.loads(line[len("data: "):])
+                    if "timings" in event:
+                        stats.server = event["timings"]
+                    for choice in event.get("choices", []):
+                        token = choice.get("delta", {}).get("content")
+                        if token:
+                            t_last = time.perf_counter()
+                            if t_first is None:
+                                t_first = t_last
+                            yield token
+            break
+        except (httpx.RemoteProtocolError, httpx.ConnectError):
+            # A pooled keep-alive connection can be closed by the server just as we reuse it.
+            # Retry once, but only if nothing was streamed yet (otherwise output would repeat).
+            if t_first is not None or attempt == 1:
+                raise
+            t0 = time.perf_counter()
     t_end = time.perf_counter()
 
     stats.total_ms = 1000 * (t_end - t0)

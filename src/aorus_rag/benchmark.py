@@ -32,7 +32,9 @@ from datetime import datetime
 import httpx
 import numpy as np
 
+from aorus_rag.llm_client import GenStats, stream_chat
 from aorus_rag.parser import ROOT
+from aorus_rag.prompt import build_messages
 from aorus_rag.rag import RAG, RunStats
 from aorus_rag.retriever import Retriever
 
@@ -41,7 +43,10 @@ RESULTS_DIR = ROOT / "eval" / "results"
 
 REFUSAL_MARKERS = ["未提及", "沒有提到", "未列出", "notlisted", "notmentioned", "notspecified"]
 # Characters that exist only in Simplified Chinese (their Traditional forms differ).
-SIMPLIFIED_ONLY = set("这个们为显电处录页说请读与发设备应该对时间长实际过还进从网络视频键盘线统连储规载较级内驱动术体图总数单")
+SIMPLIFIED_ONLY = set(
+    "这个们为显电处录页说请读与发设备应该对时间长实际过还进从网络视频键盘线统连储规载较级内驱动术体图总数单"
+    "笔记脑么吗样种务汉买卖门问关开东车书见话语让认识计运选边质带宽轻环无机号"
+)
 
 
 def norm(s: str) -> str:
@@ -118,11 +123,18 @@ class VramSampler:
         self._t.join()
 
 
+def _fact_present(alt: str, a: str) -> bool:
+    """alt is a substring, or a regex when prefixed with 're:' (matched on the normalised answer)."""
+    if alt.startswith("re:"):
+        return re.search(alt[3:], a) is not None
+    return norm(alt) in a
+
+
 def grade(case: dict, answer: str) -> dict:
     a = norm(answer)
     refused = any(m in a for m in REFUSAL_MARKERS)
     if case["gold_chunks"]:
-        facts_ok = all(any(norm(alt) in a for alt in group) for group in case["must_include"])
+        facts_ok = all(any(_fact_present(alt, a) for alt in group) for group in case["must_include"])
         correct = facts_ok and not refused
     else:
         correct = refused
@@ -139,24 +151,31 @@ def eval_generation(rag: RAG, cases: list[dict], repeat: int) -> list[dict]:
     for _ in rag.answer("warm up", RunStats()):
         pass
 
-    rows = []
-    for c in cases:
-        runs = []
-        for _ in range(repeat):
+    # Passes are the OUTER loop: consecutive requests are always different questions, so
+    # llama-server's prompt cache can only reuse the shared system-prompt prefix (as in real
+    # use). Repeating the same question back-to-back would reuse the whole prompt and
+    # make TTFT look unrealistically low.
+    runs: dict[str, list] = {c["id"]: [] for c in cases}
+    for p in range(repeat):
+        print(f"  pass {p + 1}/{repeat}", flush=True)
+        for c in cases:
             st = RunStats()
             answer = "".join(rag.answer(c["query"], st))
-            runs.append((answer, st))
-        answer, st = runs[0]  # quality is graded on the first run (temperature 0.1)
+            runs[c["id"]].append((answer, st))
+
+    rows = []
+    for c in cases:
+        answer, st = runs[c["id"]][0]  # quality is graded on the first pass (temperature 0.1)
+        case_runs = runs[c["id"]]
         rows.append({
             "id": c["id"], "query": c["query"], "lang": c["lang"], "category": c["category"],
             "answer": answer,
             "context": [h.chunk["id"] for h in st.hits],
             **grade(c, answer),
-            "retrieval_ms": [s.retrieval_ms for _, s in runs],
-            "ttft_ms": [s.gen.ttft_ms for _, s in runs],
-            "e2e_ttft_ms": [s.e2e_ttft_ms for _, s in runs],
-            "tps": [s.gen.tps for _, s in runs if s.gen.completion_tokens > 1],
-            "server_tps": [s.gen.server.get("predicted_per_second", 0) for _, s in runs],
+            "retrieval_ms": [s.retrieval_ms for _, s in case_runs],
+            "ttft_ms": [s.gen.ttft_ms for _, s in case_runs],
+            "e2e_ttft_ms": [s.e2e_ttft_ms for _, s in case_runs],
+            "cache_tokens": [int(s.gen.server.get("cache_n", 0)) for _, s in case_runs],
             "prompt_tokens": st.gen.prompt_tokens,
             "completion_tokens": st.gen.completion_tokens,
         })
@@ -187,11 +206,31 @@ def summarize(rows: list[dict]) -> dict:
         "simplified_leak_rate": sum(bool(r["simplified_chars"]) for r in rows if r["lang"] != "en")
                                 / max(1, sum(r["lang"] != "en" for r in rows)),
         "latency_ms": {"retrieval": pct("retrieval_ms"), "llm_ttft": pct("ttft_ms"), "e2e_ttft": pct("e2e_ttft_ms")},
-        "tps": pct("tps"),
-        "server_tps": pct("server_tps"),
         "avg_prompt_tokens": float(np.mean([r["prompt_tokens"] for r in rows])),
+        "avg_cached_prompt_tokens": float(np.mean([v for r in rows for v in r["cache_tokens"]])),
         "avg_completion_tokens": float(np.mean([r["completion_tokens"] for r in rows])),
     }
+
+
+def eval_throughput(rag: RAG, runs: int = 5, n_tokens: int = 256) -> dict:
+    """Decode speed on a fixed-length generation.
+
+    RAG answers average ~30 tokens, too short for a stable TPS (timer noise on a few tokens
+    dominates). Here we force exactly n_tokens with ignore_eos, using a real RAG prompt.
+    """
+    query = "介紹一下這台筆電"
+    hits = rag.retriever.search(query, k=rag.k, mode=rag.mode, prune=rag.prune)
+    messages = build_messages(query, hits)
+    client, server = [], []
+    for _ in range(runs):
+        st = GenStats()
+        for _ in stream_chat(messages, st, max_tokens=n_tokens, extra={"ignore_eos": True}):
+            pass
+        client.append(st.tps)
+        server.append(st.server.get("predicted_per_second", 0.0))
+    return {"runs": runs, "tokens": n_tokens,
+            "client_tps_mean": float(np.mean(client)), "client_tps_std": float(np.std(client)),
+            "server_tps_mean": float(np.mean(server)), "server_tps_std": float(np.std(server))}
 
 
 # ---------------------------------------------------------------- report
@@ -232,13 +271,20 @@ def to_markdown(res: dict) -> str:
     L += [f"| {k} | {v['n']} | {v['acc']:.1%} |" for k, v in s["by_lang"].items()]
 
     lat = s["latency_ms"]
-    L += ["", "## Latency & throughput", "", "| metric | p50 | p95 | mean |", "|---|---|---|---|"]
+    L += ["", "## Latency", "", "| metric | p50 | p95 | mean |", "|---|---|---|---|"]
     for name, v in [("retrieval (ms)", lat["retrieval"]), ("LLM TTFT (ms)", lat["llm_ttft"]),
-                    ("E2E TTFT (ms)", lat["e2e_ttft"]), ("TPS client (tok/s)", s["tps"]),
-                    ("TPS server (tok/s)", s["server_tps"])]:
+                    ("E2E TTFT (ms)", lat["e2e_ttft"])]:
         L.append(f"| {name} | {v['p50']:.1f} | {v['p95']:.1f} | {v['mean']:.1f} |")
-    L += ["", f"- avg prompt tokens: {s['avg_prompt_tokens']:.0f}, avg completion tokens: "
-              f"{s['avg_completion_tokens']:.0f}", f"- peak VRAM (whole GPU): **{res['peak_vram_mib']} MiB** / 4096 MiB", ""]
+    L += ["", f"- avg prompt tokens: {s['avg_prompt_tokens']:.0f} "
+              f"(of which served from prompt cache: {s['avg_cached_prompt_tokens']:.0f} — the shared system prompt), "
+              f"avg completion tokens: {s['avg_completion_tokens']:.0f}"]
+    t = res["throughput"]
+    L += ["", "## Throughput (decode)", "",
+          f"Fixed {t['tokens']}-token generation (ignore_eos) on a real RAG prompt, {t['runs']} runs:", "",
+          "| measured by | TPS mean | std |", "|---|---|---|",
+          f"| client (stream timing) | {t['client_tps_mean']:.1f} | {t['client_tps_std']:.1f} |",
+          f"| llama-server timings | {t['server_tps_mean']:.1f} | {t['server_tps_std']:.1f} |",
+          "", f"- peak VRAM (whole GPU): **{res['peak_vram_mib']} MiB** / 4096 MiB", ""]
 
     fails = [r for r in res["rows"] if not r["correct"]]
     L += [f"## Failures ({len(fails)})", ""]
@@ -274,6 +320,8 @@ def main() -> None:
         t0 = time.perf_counter()
         with VramSampler() as vram:
             res["rows"] = eval_generation(rag, cases, args.repeat)
+            print("throughput ...")
+            res["throughput"] = eval_throughput(rag)
         res["peak_vram_mib"] = vram.peak
         res["summary"] = summarize(res["rows"])
         print(f"done in {time.perf_counter() - t0:.0f}s")

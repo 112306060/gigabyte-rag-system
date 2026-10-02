@@ -32,10 +32,13 @@ function Wait-Healthy($port) {
 }
 
 if (-not $EmbedOnly) {
-    # -ngl 99 : offload all layers to GPU
-    # -np 1   : single slot (one user) -> only one KV cache is allocated
+    # -ngl 99         : offload all layers to GPU
+    # -np 1           : single slot (one user) -> only one KV cache is allocated
+    # --cache-ram 0   : disable the host-RAM prompt cache (default up to 8 GiB). It replays KV for
+    #                   previously seen prompts, which inflates benchmark TTFT and costs RAM on a
+    #                   consumer laptop. The slot still reuses the shared system-prompt prefix.
     Start-Llama "gen" @("-m", (Join-Path $models $GenModel), "-ngl", "99", "-c", "$Ctx", "-np", "1",
-                       "--host", "127.0.0.1", "--port", "8080")
+                       "--cache-ram", "0", "--host", "127.0.0.1", "--port", "8080")
     Wait-Healthy 8080
 }
 if (-not $GenOnly) {
