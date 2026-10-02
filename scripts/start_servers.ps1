@@ -14,6 +14,14 @@ $models = Join-Path $root "models"
 $logs = Join-Path $root "logs"
 New-Item -ItemType Directory -Force $logs | Out-Null
 
+function Assert-PortFree($port) {
+    # Otherwise Wait-Healthy would be answered by an old server still on the port, and a
+    # benchmark could silently run against the wrong model.
+    if (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) {
+        throw "port $port is already in use - stop the running llama-server first"
+    }
+}
+
 function Start-Llama($name, $argList) {
     $p = Start-Process -FilePath $server -ArgumentList $argList -PassThru -WindowStyle Hidden `
         -RedirectStandardOutput (Join-Path $logs "$name.out.log") `
@@ -37,6 +45,7 @@ if (-not $EmbedOnly) {
     # --cache-ram 0   : disable the host-RAM prompt cache (default up to 8 GiB). It replays KV for
     #                   previously seen prompts, which inflates benchmark TTFT and costs RAM on a
     #                   consumer laptop. The slot still reuses the shared system-prompt prefix.
+    Assert-PortFree 8080
     Start-Llama "gen" @("-m", (Join-Path $models $GenModel), "-ngl", "99", "-c", "$Ctx", "-np", "1",
                        "--cache-ram", "0", "--host", "127.0.0.1", "--port", "8080")
     Wait-Healthy 8080
@@ -45,6 +54,7 @@ if (-not $GenOnly) {
     # --device none : hide the GPU entirely. With only -ngl 0 the CUDA build still creates a
     #                 CUDA context and offloads large matmuls, costing ~450 MiB of VRAM.
     # -ub 8192      : embeddings (non-causal) need the whole input in one micro-batch
+    Assert-PortFree 8081
     Start-Llama "embed" @("-m", (Join-Path $models "bge-m3-Q8_0.gguf"), "--embedding", "--pooling", "cls",
                           "--device", "none", "-c", "8192", "-b", "8192", "-ub", "8192", "-np", "1",
                           "--host", "127.0.0.1", "--port", "8081")

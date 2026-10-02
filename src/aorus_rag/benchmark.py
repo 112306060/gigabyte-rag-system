@@ -33,8 +33,9 @@ import httpx
 import numpy as np
 
 from aorus_rag.llm_client import GenStats, stream_chat
+from aorus_rag.index import load_chunks
 from aorus_rag.parser import ROOT
-from aorus_rag.prompt import build_messages
+from aorus_rag.prompt import DEFAULT_PROMPT, PROMPT_RULES, build_messages
 from aorus_rag.rag import RAG, RunStats
 from aorus_rag.retriever import Retriever
 
@@ -130,7 +131,25 @@ def _fact_present(alt: str, a: str) -> bool:
     return norm(alt) in a
 
 
-def grade(case: dict, answer: str) -> dict:
+_chunk_text: dict[str, str] = {}
+
+
+def _supports(case: dict, chunk_id: str) -> bool:
+    """A chunk supports the answer if it is a gold chunk or contains at least one required fact.
+
+    "At least one" because multi-fact answers cite a different chunk per sentence
+    (e.g. an overview citing the GPU comparison chunk for the GPU sentence only).
+    For single-fact questions this is the same as requiring the fact.
+    """
+    if not _chunk_text:
+        _chunk_text.update({c["id"]: norm(c["text"]) for c in load_chunks()})
+    if chunk_id in case["gold_chunks"]:
+        return True
+    text = _chunk_text[chunk_id]
+    return any(any(_fact_present(alt, text) for alt in group) for group in case["must_include"])
+
+
+def grade(case: dict, answer: str, context: list[str]) -> dict:
     a = norm(answer)
     refused = any(m in a for m in REFUSAL_MARKERS)
     if case["gold_chunks"]:
@@ -138,10 +157,18 @@ def grade(case: dict, answer: str) -> dict:
         correct = facts_ok and not refused
     else:
         correct = refused
+
+    # Citation correctness: every [n] must point to an existing context chunk that supports
+    # the answer. Only judged for answerable questions (a refusal has nothing to support).
+    cites = sorted({int(n) for n in re.findall(r"\[(\d+)\]", answer)})
+    bad = [n for n in cites if not (1 <= n <= len(context) and _supports(case, context[n - 1]))]
+    citation_correct = (not bad) if (cites and case["gold_chunks"]) else None
     return {
         "correct": correct,
         "refused": refused,
-        "cited": bool(re.search(r"\[\d+\]", answer)),
+        "cited": bool(cites),
+        "citation_correct": citation_correct,
+        "bad_citations": [[n, context[n - 1] if 1 <= n <= len(context) else None] for n in bad],
         "simplified_chars": sorted({ch for ch in answer if ch in SIMPLIFIED_ONLY}),
     }
 
@@ -165,13 +192,17 @@ def eval_generation(rag: RAG, cases: list[dict], repeat: int) -> list[dict]:
 
     rows = []
     for c in cases:
-        answer, st = runs[c["id"]][0]  # quality is graded on the first pass (temperature 0.1)
         case_runs = runs[c["id"]]
+        answer, st = case_runs[0]  # headline quality = first pass; every pass is graded below
+        context = [h.chunk["id"] for h in st.hits]
         rows.append({
             "id": c["id"], "query": c["query"], "lang": c["lang"], "category": c["category"],
             "answer": answer,
-            "context": [h.chunk["id"] for h in st.hits],
-            **grade(c, answer),
+            "context": context,
+            **grade(c, answer, context),
+            # generation varies even at temperature 0.1, so grade every pass for stability
+            "answers_all": [a for a, _ in case_runs],
+            "correct_runs": [grade(c, a, [h.chunk["id"] for h in s.hits])["correct"] for a, s in case_runs],
             "retrieval_ms": [s.retrieval_ms for _, s in case_runs],
             "ttft_ms": [s.gen.ttft_ms for _, s in case_runs],
             "e2e_ttft_ms": [s.e2e_ttft_ms for _, s in case_runs],
@@ -195,7 +226,20 @@ def summarize(rows: list[dict]) -> dict:
                 "mean": float(np.mean(vals))} if vals else None
 
     answerable = [r for r in rows if r["category"] != "unanswerable"]
+    judged = [r for r in answerable if r.get("citation_correct") is not None]
+    stability = None
+    if rows and "correct_runs" in rows[0]:
+        n_pass = len(rows[0]["correct_runs"])
+        stability = {
+            "passes": n_pass,
+            "per_pass_acc": [sum(r["correct_runs"][p] for r in rows) / len(rows) for p in range(n_pass)],
+            "all_passes_correct": sum(all(r["correct_runs"]) for r in rows),
+            "unstable": [r["id"] for r in rows if len(set(r["correct_runs"])) > 1],
+        }
     return {
+        "stability": stability,
+        "citation_correctness": (sum(r["citation_correct"] for r in judged) / len(judged)) if judged else None,
+        "citation_judged": len(judged),
         "overall": acc(rows),
         "answerable": acc(answerable),
         "unanswerable_refusal": acc(r for r in rows if r["category"] == "unanswerable"),
@@ -220,7 +264,7 @@ def eval_throughput(rag: RAG, runs: int = 5, n_tokens: int = 256) -> dict:
     """
     query = "介紹一下這台筆電"
     hits = rag.retriever.search(query, k=rag.k, mode=rag.mode, prune=rag.prune)
-    messages = build_messages(query, hits)
+    messages = build_messages(query, hits, rag.prompt_version)
     client, server = [], []
     for _ in range(runs):
         st = GenStats()
@@ -238,8 +282,9 @@ def eval_throughput(rag: RAG, runs: int = 5, n_tokens: int = 256) -> dict:
 def to_markdown(res: dict) -> str:
     L = [f"# Benchmark: {res['name']}", "",
          f"- date: {res['date']}", f"- generator: `{res.get('model')}`",
-         f"- config: k={res['config']['k']}, mode={res['config']['mode']}, prune={res['config']['prune']}, "
-         f"repeat={res['config']['repeat']}", ""]
+         f"- config: prompt={res['config'].get('prompt', 'v3')}, k={res['config']['k']}, "
+         f"mode={res['config']['mode']}, prune={res['config']['prune']}, repeat={res['config']['repeat']}, "
+         f"traditional={res['config'].get('traditional', False)}", ""]
 
     L += ["## Retrieval (raw ranking, answerable questions)", "",
           "| mode | Hit@1 | Hit@3 | Hit@5 | MRR |", "|---|---|---|---|---|"]
@@ -258,13 +303,26 @@ def to_markdown(res: dict) -> str:
     s = res.get("summary")
     if not s:
         return "\n".join(L)
+    cite_ok = "—" if s.get("citation_correctness") is None else f"{s['citation_correctness']:.1%}"
     L += ["## Answer quality", "", "| metric | value |", "|---|---|",
           f"| overall accuracy | {s['overall']['acc']:.1%} ({s['overall']['n']} q) |",
           f"| answerable accuracy | {s['answerable']['acc']:.1%} |",
           f"| unanswerable → correct refusal | {s['unanswerable_refusal']['acc']:.1%} |",
           f"| false refusal (answerable) | {s['false_refusal_rate']:.1%} |",
-          f"| citation rate | {s['citation_rate']:.1%} |",
+          f"| citation compliance (has [n]) | {s['citation_rate']:.1%} |",
+          f"| citation correctness (cited chunk supports answer) | {cite_ok} ({s.get('citation_judged', 0)} cited answers) |",
           f"| Simplified-Chinese leakage | {s['simplified_leak_rate']:.1%} |", ""]
+    st = s.get("stability")
+    if st and st["passes"] > 1:
+        L += [f"### Stability over {st['passes']} passes", "", "| pass | accuracy |", "|---|---|"]
+        L += [f"| {i + 1} | {a:.1%} |" for i, a in enumerate(st["per_pass_acc"])]
+        L += ["", f"- correct in **all** passes: **{st['all_passes_correct']} / {s['overall']['n']}**",
+              f"- questions whose result changed between passes: {st['unstable'] or 'none'}", ""]
+    bad = [r for r in res["rows"] if r.get("citation_correct") is False]
+    if bad:
+        L += ["### Incorrect citations", ""]
+        L += [f"- **{r['id']}** cited {r['bad_citations']} → `{r['answer'].strip()[:120]}`" for r in bad]
+        L.append("")
     L += ["| category | n | accuracy |", "|---|---|---|"]
     L += [f"| {k} | {v['n']} | {v['acc']:.1%} |" for k, v in s["by_category"].items()]
     L += ["", "| language | n | accuracy |", "|---|---|---|"]
@@ -302,13 +360,17 @@ def main() -> None:
     p.add_argument("--mode", default="hybrid", choices=["hybrid", "dense", "bm25"])
     p.add_argument("--no-prune", action="store_true")
     p.add_argument("--repeat", type=int, default=3, help="runs per question for latency percentiles")
+    p.add_argument("--prompt", default=DEFAULT_PROMPT, choices=sorted(PROMPT_RULES))
+    p.add_argument("--no-traditional", action="store_true", help="disable OpenCC s2tw output conversion")
     p.add_argument("--skip-gen", action="store_true")
     args = p.parse_args()
 
     cases = load_cases()
-    rag = RAG(k=args.k, mode=args.mode, prune=not args.no_prune)
+    rag = RAG(k=args.k, mode=args.mode, prune=not args.no_prune, prompt_version=args.prompt,
+              traditional=not args.no_traditional)
     res = {"name": args.name, "date": datetime.now().isoformat(timespec="seconds"),
-           "config": {"k": args.k, "mode": args.mode, "prune": not args.no_prune, "repeat": args.repeat}}
+           "config": {"k": args.k, "mode": args.mode, "prune": not args.no_prune, "repeat": args.repeat,
+                      "prompt": args.prompt, "traditional": not args.no_traditional}}
 
     print("retrieval ...")
     res["retrieval"] = eval_retrieval(rag.retriever, cases, args.k)

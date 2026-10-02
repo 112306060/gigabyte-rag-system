@@ -7,7 +7,7 @@
 {"id": "q07", "query": "機身尺寸是多少？", "lang": "zh", "category": "basic", "gold_chunks": ["row14"], "must_include": [["357"], ["254"]]}
 {"id": "q08", "query": "支援藍牙嗎？是哪個版本？", "lang": "zh", "category": "basic", "gold_chunks": ["row09"], "must_include": [["5.4"]]}
 {"id": "q09", "query": "視訊鏡頭支援人臉辨識嗎？", "lang": "zh", "category": "basic", "gold_chunks": ["row10"], "must_include": [["windowshello", "人臉"]]}
-{"id": "q10", "query": "鍵盤有背光嗎？", "lang": "zh", "category": "basic", "gold_chunks": ["row06"], "must_include": [["rgb"]]}
+{"id": "q10", "query": "鍵盤有背光嗎？", "lang": "zh", "category": "basic", "gold_chunks": ["row06"], "must_include": [["rgb", "背光", "backlit"]]}
 {"id": "q11", "query": "這台是什麼顏色？", "lang": "zh", "category": "basic", "gold_chunks": ["row16"], "must_include": [["darktide"]]}
 {"id": "q12", "query": "喇叭規格是什麼？", "lang": "zh", "category": "colloquial", "gold_chunks": ["row08"], "must_include": [["2w"]]}
 {"id": "q13", "query": "What CPU does it use?", "lang": "en", "category": "basic", "gold_chunks": ["row01"], "must_include": [["275hx"]]}
@@ -30,7 +30,7 @@
 {"id": "q30", "query": "三個型號差在哪？", "lang": "zh", "category": "sku", "gold_chunks": ["row02_variants"], "must_include": [["5090"], ["5080"], ["5070"]]}
 {"id": "q31", "query": "顯卡是什麼？", "lang": "zh", "category": "sku", "gold_chunks": ["row02_variants"], "must_include": [["5090"], ["5080"], ["5070"]]}
 {"id": "q32", "query": "RTX 5070 Ti 版本的電池容量跟其他型號一樣嗎？", "lang": "mix", "category": "sku", "gold_chunks": ["row12"], "must_include": [["99"]]}
-{"id": "q33", "query": "這台有幾個 USB 孔？", "lang": "zh", "category": "aggregate", "gold_chunks": ["row07"], "must_include": [["4個", "4usb", "four"]]}
+{"id": "q33", "query": "這台有幾個 USB 孔？", "lang": "zh", "category": "aggregate", "gold_chunks": ["row07"], "must_include": [["4個", "四個", "4usb", "four"]]}
 {"id": "q34", "query": "How many Type-C ports are there?", "lang": "en", "category": "aggregate", "gold_chunks": ["row07"], "must_include": [["2type-c", "two", "2ports", "type-cx2", "re:^2(?![0-9])"]]}
 {"id": "q35", "query": "可以插記憶卡嗎？", "lang": "zh", "category": "colloquial", "gold_chunks": ["row07"], "must_include": [["microsd"]]}
 {"id": "q36", "query": "介紹一下這台筆電", "lang": "zh", "category": "aggregate", "gold_chunks": ["overview"], "must_include": [["275hx"], ["5090"]]}
