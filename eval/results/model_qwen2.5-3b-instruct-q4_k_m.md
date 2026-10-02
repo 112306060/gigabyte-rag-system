@@ -1,6 +1,6 @@
-# Benchmark: v3
+# Benchmark: model_qwen2.5-3b-instruct-q4_k_m
 
-- date: 2026-10-02T13:11:10
+- date: 2026-10-02T13:21:48
 - generator: `C:\Users\user\Desktop\技嘉面試實作\models\qwen2.5-3b-instruct-q4_k_m.gguf`
 - config: prompt=v3, k=5, mode=hybrid, prune=True, repeat=3, traditional=False
 
@@ -50,9 +50,9 @@ Final context (hybrid + prune): gold chunk present **100.0%**, avg 3.75 chunks
 
 | metric | p50 | p95 | mean |
 |---|---|---|---|
-| retrieval (ms) | 28.4 | 38.6 | 29.8 |
-| LLM TTFT (ms) | 316.4 | 491.5 | 306.2 |
-| E2E TTFT (ms) | 344.1 | 517.9 | 336.0 |
+| retrieval (ms) | 31.1 | 43.0 | 32.5 |
+| LLM TTFT (ms) | 320.0 | 484.4 | 309.1 |
+| E2E TTFT (ms) | 354.8 | 516.7 | 341.5 |
 
 - avg prompt tokens: 1193 (of which served from prompt cache: 527 — the shared system prompt), avg completion tokens: 30
 
@@ -62,8 +62,8 @@ Fixed 256-token generation (ignore_eos) on a real RAG prompt, 5 runs:
 
 | measured by | TPS mean | std |
 |---|---|---|
-| client (stream timing) | 71.4 | 0.4 |
-| llama-server timings | 71.3 | 0.2 |
+| client (stream timing) | 69.7 | 1.5 |
+| llama-server timings | 69.7 | 1.5 |
 
 - peak VRAM (whole GPU): **2159 MiB** / 4096 MiB
 

@@ -1,11 +1,12 @@
 {
-  "name": "v2",
-  "date": "2026-10-02T13:08:30",
+  "name": "qwen3-4b_prompt-v2",
+  "date": "2026-10-02T13:46:28",
   "config": {
     "k": 5,
     "mode": "hybrid",
     "prune": true,
-    "repeat": 3
+    "repeat": 3,
+    "prompt": "v2"
   },
   "retrieval": {
     "dense": {
@@ -79,36 +80,36 @@
       0.531
     ]
   },
-  "model": "C:\\Users\\user\\Desktop\\技嘉面試實作\\models\\qwen2.5-3b-instruct-q4_k_m.gguf",
+  "model": "C:\\Users\\user\\Desktop\\技嘉面試實作\\models\\Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
   "rows": [
     {
       "id": "q01",
       "query": "這台筆電多重？",
       "lang": "zh",
       "category": "basic",
-      "answer": "這台筆電重約 2.5 公斤。",
+      "answer": "這台筆電約重 2.5 kg [1]。",
       "context": [
         "row15",
         "overview"
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        25.158700009342283,
-        28.585699968971312,
-        31.497000018134713
+        25.08509997278452,
+        27.834000007715076,
+        27.90619997540489
       ],
       "ttft_ms": [
-        202.18150003347546,
-        192.05740001052618,
-        208.03420001175255
+        262.1528999879956,
+        263.2894999696873,
+        265.45420003822073
       ],
       "e2e_ttft_ms": [
-        227.34020004281774,
-        220.6430999794975,
-        239.53120002988726
+        287.23799996078014,
+        291.1234999774024,
+        293.3604000136256
       ],
       "cache_tokens": [
         462,
@@ -116,8 +117,8 @@
         462
       ],
       "prompt_tokens": 856,
-      "completion_tokens": 15,
-      "citation_correct": null,
+      "completion_tokens": 16,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -125,7 +126,7 @@
       "query": "電池容量是多少？",
       "lang": "zh",
       "category": "basic",
-      "answer": "電池容量是 99Wh。",
+      "answer": "電池容量是 99Wh [1]。",
       "context": [
         "row12",
         "row05",
@@ -135,22 +136,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        22.528500005137175,
-        59.05580002581701,
-        28.78479997161776
+        24.263800005428493,
+        23.823400028049946,
+        23.50399998249486
       ],
       "ttft_ms": [
-        299.9793999479152,
-        292.7433999720961,
-        302.5801000185311
+        399.1842000395991,
+        387.4451000010595,
+        395.574200025294
       ],
       "e2e_ttft_ms": [
-        322.5078999530524,
-        351.7991999979131,
-        331.36489999014884
+        423.4480000450276,
+        411.2685000291094,
+        419.07820000778884
       ],
       "cache_tokens": [
         462,
@@ -158,8 +159,8 @@
         462
       ],
       "prompt_tokens": 1122,
-      "completion_tokens": 10,
-      "citation_correct": null,
+      "completion_tokens": 13,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -167,7 +168,7 @@
       "query": "處理器是哪一顆？",
       "lang": "zh",
       "category": "basic",
-      "answer": "中央處理器是Intel® Core™ Ultra 9 Processor 275HX。",
+      "answer": "處理器是 Intel® Core™ Ultra 9 Processor 275HX（36MB cache，最高 5.4 GHz，24 核心，24 線程）。[1]",
       "context": [
         "row01",
         "overview",
@@ -177,22 +178,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        23.089899972546846,
-        27.60810003383085,
-        23.330099997110665
+        26.067700004205108,
+        22.546299966052175,
+        23.47019995795563
       ],
       "ttft_ms": [
-        417.5078000407666,
-        410.5172000126913,
-        402.7360999607481
+        539.1781000071205,
+        549.3871999788098,
+        541.7547000106424
       ],
       "e2e_ttft_ms": [
-        440.59770001331344,
-        438.12530004652217,
-        426.06619995785877
+        565.2458000113256,
+        571.933499944862,
+        565.224899968598
       ],
       "cache_tokens": [
         462,
@@ -200,8 +201,8 @@
         462
       ],
       "prompt_tokens": 1397,
-      "completion_tokens": 19,
-      "citation_correct": null,
+      "completion_tokens": 46,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -209,7 +210,7 @@
       "query": "螢幕解析度多少？",
       "lang": "zh",
       "category": "basic",
-      "answer": "螢幕解析度為 2560×1600。",
+      "answer": "螢幕解析度為 2560×1600。[1]",
       "context": [
         "row03",
         "row02_variants",
@@ -217,22 +218,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        24.07919999677688,
-        26.58309997059405,
-        27.131999959237874
+        25.07029997650534,
+        25.03159997286275,
+        27.069200004916638
       ],
       "ttft_ms": [
-        361.8279999936931,
-        386.92429999355227,
-        374.8811999685131
+        474.1935000056401,
+        480.6228000088595,
+        479.4082000153139
       ],
       "e2e_ttft_ms": [
-        385.90719999046996,
-        413.5073999641463,
-        402.013199927751
+        499.26379998214543,
+        505.65439998172224,
+        506.47740002023056
       ],
       "cache_tokens": [
         462,
@@ -240,8 +241,8 @@
         462
       ],
       "prompt_tokens": 1235,
-      "completion_tokens": 18,
-      "citation_correct": null,
+      "completion_tokens": 21,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -249,7 +250,7 @@
       "query": "記憶體最大可以擴充到多少？",
       "lang": "zh",
       "category": "basic",
-      "answer": "記憶體最大可以擴充到 64GB DDR5 5600MHz。",
+      "answer": "記憶體最大可以擴充到 64GB DDR5 5600MHz [1]。",
       "context": [
         "row04",
         "overview",
@@ -257,22 +258,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        40.76629999326542,
-        31.171999988146126,
-        35.689700045622885
+        34.18970003258437,
+        33.65920000942424,
+        33.16729998914525
       ],
       "ttft_ms": [
-        261.7156999767758,
-        266.4253000402823,
-        264.3933999934234
+        335.2222999674268,
+        338.6068000108935,
+        344.8509000008926
       ],
       "e2e_ttft_ms": [
-        302.4819999700412,
-        297.59730002842844,
-        300.08310003904626
+        369.4120000000112,
+        372.26600002031773,
+        378.01819999003783
       ],
       "cache_tokens": [
         462,
@@ -280,8 +281,8 @@
         462
       ],
       "prompt_tokens": 1016,
-      "completion_tokens": 22,
-      "citation_correct": null,
+      "completion_tokens": 25,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -289,7 +290,7 @@
       "query": "充電器是幾瓦的？",
       "lang": "zh",
       "category": "colloquial",
-      "answer": "變壓器 / Adapter 是 330W。",
+      "answer": "330W。[1]",
       "context": [
         "row13",
         "row12",
@@ -299,22 +300,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        28.516799968201667,
-        30.57130001252517,
-        33.37319998536259
+        26.545199973043054,
+        28.057900024577975,
+        34.1908999835141
       ],
       "ttft_ms": [
-        357.25709999678656,
-        356.2618000432849,
-        361.9848999660462
+        463.4504000423476,
+        464.26350000547245,
+        483.9207999757491
       ],
       "e2e_ttft_ms": [
-        385.77389996498823,
-        386.83310005581006,
-        395.3580999514088
+        489.99560001539066,
+        492.3214000300504,
+        518.1116999592632
       ],
       "cache_tokens": [
         462,
@@ -322,8 +323,8 @@
         462
       ],
       "prompt_tokens": 1260,
-      "completion_tokens": 13,
-      "citation_correct": null,
+      "completion_tokens": 9,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -331,7 +332,7 @@
       "query": "機身尺寸是多少？",
       "lang": "zh",
       "category": "basic",
-      "answer": "機身尺寸為 357 x 254 x 23~29.9 mm。",
+      "answer": "機身尺寸為 357 x 254 x 23~29.9 mm [1]。",
       "context": [
         "row14",
         "row15",
@@ -341,22 +342,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        25.021900015417486,
-        30.428500031121075,
-        34.4152000034228
+        28.275699994992465,
+        24.802999978419393,
+        24.790600000414997
       ],
       "ttft_ms": [
-        274.33849999215454,
-        286.8964000372216,
-        294.17190002277493
+        352.13869996368885,
+        398.6019999720156,
+        369.1827000002377
       ],
       "e2e_ttft_ms": [
-        299.360400007572,
-        317.3249000683427,
-        328.58710002619773
+        380.4143999586813,
+        423.404999950435,
+        393.97330000065267
       ],
       "cache_tokens": [
         462,
@@ -364,8 +365,8 @@
         462
       ],
       "prompt_tokens": 1076,
-      "completion_tokens": 25,
-      "citation_correct": null,
+      "completion_tokens": 28,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -373,7 +374,7 @@
       "query": "支援藍牙嗎？是哪個版本？",
       "lang": "zh",
       "category": "basic",
-      "answer": "支援藍牙，版本為 Bluetooth v5.4。",
+      "answer": "支援藍牙，版本為 v5.4。[1]",
       "context": [
         "row09",
         "row07",
@@ -383,22 +384,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        29.859100002795458,
-        33.32149999914691,
-        33.50379999028519
+        30.164700001478195,
+        35.1834999746643,
+        33.050900034140795
       ],
       "ttft_ms": [
-        405.3665000246838,
-        417.3092999844812,
-        414.6557000349276
+        539.2865000176243,
+        546.9109999830835,
+        553.8773000007495
       ],
       "e2e_ttft_ms": [
-        435.22560002747923,
-        450.6307999836281,
-        448.15950002521276
+        569.4512000191025,
+        582.0944999577478,
+        586.9282000348903
       ],
       "cache_tokens": [
         462,
@@ -406,8 +407,8 @@
         462
       ],
       "prompt_tokens": 1409,
-      "completion_tokens": 13,
-      "citation_correct": null,
+      "completion_tokens": 15,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -415,28 +416,28 @@
       "query": "視訊鏡頭支援人臉辨識嗎？",
       "lang": "zh",
       "category": "basic",
-      "answer": "視訊鏡頭支援人臉辨識。",
+      "answer": "支援，視訊鏡頭支援人臉辨識，具體為支援 Windows Hello Face Authentication [1]。",
       "context": [
         "row10"
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        29.350999975576997,
-        31.568899983540177,
-        31.713400036096573
+        36.99369996320456,
+        29.446400003507733,
+        34.10950000397861
       ],
       "ttft_ms": [
-        66.50289997924119,
-        65.69779996061698,
-        71.38690003193915
+        74.6439000358805,
+        89.95480003068224,
+        73.90290003968403
       ],
       "e2e_ttft_ms": [
-        95.85389995481819,
-        97.26669994415715,
-        103.10030006803572
+        111.63759999908507,
+        119.40120003418997,
+        108.01240004366264
       ],
       "cache_tokens": [
         462,
@@ -444,8 +445,8 @@
         462
       ],
       "prompt_tokens": 532,
-      "completion_tokens": 11,
-      "citation_correct": null,
+      "completion_tokens": 25,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -453,28 +454,28 @@
       "query": "鍵盤有背光嗎？",
       "lang": "zh",
       "category": "basic",
-      "answer": "有背光鍵盤，支援三區RGB燈光，鍵盤行程最高達1.7mm，並支援多鍵同時按壓功能。",
+      "answer": "有，鍵盤有背光，為 3-zone RGB 背光鍵盤 [1]。",
       "context": [
         "row06"
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        23.862199974246323,
-        29.219700023531914,
-        33.88529998483136
+        28.44960003858432,
+        27.463899983558804,
+        24.98310001101345
       ],
       "ttft_ms": [
-        52.9746999964118,
-        63.031400030013174,
-        79.84329998726025
+        74.97680000960827,
+        71.41939998837188,
+        87.88369997637346
       ],
       "e2e_ttft_ms": [
-        76.83689997065812,
-        92.25110005354509,
-        113.72859997209162
+        103.42640004819259,
+        98.88329997193068,
+        112.86679998738691
       ],
       "cache_tokens": [
         462,
@@ -482,8 +483,8 @@
         462
       ],
       "prompt_tokens": 527,
-      "completion_tokens": 36,
-      "citation_correct": null,
+      "completion_tokens": 26,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -491,7 +492,7 @@
       "query": "這台是什麼顏色？",
       "lang": "zh",
       "category": "basic",
-      "answer": "這台是暗 Tide 風色。",
+      "answer": "這台是 Dark Tide 色。[1]",
       "context": [
         "row16",
         "row00",
@@ -499,24 +500,24 @@
         "row06",
         "row02_variants"
       ],
-      "correct": false,
+      "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        22.244399995543063,
-        22.802499996032566,
-        23.274799983482808
+        23.490499996114522,
+        20.53490001708269,
+        26.307699969038367
       ],
       "ttft_ms": [
-        301.4079999993555,
-        313.91020002774894,
-        311.4973999909125
+        388.8246999704279,
+        397.1988999983296,
+        413.4438000037335
       ],
       "e2e_ttft_ms": [
-        323.6523999948986,
-        336.7127000237815,
-        334.77219997439533
+        412.3151999665424,
+        417.73380001541227,
+        439.75149997277185
       ],
       "cache_tokens": [
         462,
@@ -524,8 +525,8 @@
         462
       ],
       "prompt_tokens": 1126,
-      "completion_tokens": 11,
-      "citation_correct": null,
+      "completion_tokens": 13,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -533,7 +534,7 @@
       "query": "喇叭規格是什麼？",
       "lang": "zh",
       "category": "colloquial",
-      "answer": "喇叭規格是：\n- 4x 2W speakers\n- Microphone\n- Dolby Atmos®\n- Smart Amp Technology",
+      "answer": "喇叭規格為 4x 2W speakers。[1]",
       "context": [
         "row08",
         "row15",
@@ -543,22 +544,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        20.5335000064224,
-        22.765300003811717,
-        29.215099988505244
+        26.164399983827025,
+        22.615599969867617,
+        22.10250002099201
       ],
       "ttft_ms": [
-        215.45180003158748,
-        233.30969997914508,
-        241.30469997180626
+        306.46880000131205,
+        303.6634000018239,
+        293.5291999601759
       ],
       "e2e_ttft_ms": [
-        235.98530003800988,
-        256.0749999829568,
-        270.5197999603115
+        332.6331999851391,
+        326.2789999716915,
+        315.6316999811679
       ],
       "cache_tokens": [
         462,
@@ -566,8 +567,8 @@
         462
       ],
       "prompt_tokens": 968,
-      "completion_tokens": 29,
-      "citation_correct": null,
+      "completion_tokens": 16,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -575,7 +576,7 @@
       "query": "What CPU does it use?",
       "lang": "en",
       "category": "basic",
-      "answer": "It uses Intel® Core™ Ultra 9 Processor 275HX.",
+      "answer": "The CPU used is Intel® Core™ Ultra 9 Processor 275HX (36MB cache, up to 5.4 GHz, 24 cores, 24 threads) [1].",
       "context": [
         "row01",
         "overview",
@@ -585,22 +586,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        26.822000043466687,
-        26.047200022730976,
-        31.102400040253997
+        26.367600017692894,
+        22.886899998411536,
+        21.804000018164515
       ],
       "ttft_ms": [
-        352.0526999491267,
-        361.5373999928124,
-        369.6779999881983
+        479.4629000243731,
+        473.5050000017509,
+        495.27499999385327
       ],
       "e2e_ttft_ms": [
-        378.8746999925934,
-        387.5846000155434,
-        400.7804000284523
+        505.830500042066,
+        496.3919000001624,
+        517.0790000120178
       ],
       "cache_tokens": [
         462,
@@ -608,8 +609,8 @@
         462
       ],
       "prompt_tokens": 1278,
-      "completion_tokens": 17,
-      "citation_correct": null,
+      "completion_tokens": 45,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -617,7 +618,7 @@
       "query": "What is the battery capacity?",
       "lang": "en",
       "category": "basic",
-      "answer": "The battery capacity is 99Wh.",
+      "answer": "The battery capacity is 99Wh [1].",
       "context": [
         "row12",
         "overview",
@@ -627,22 +628,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        23.74999999301508,
-        27.60390000184998,
-        29.27629998885095
+        33.23509998153895,
+        25.08819999638945,
+        23.072099953424186
       ],
       "ttft_ms": [
-        372.54690000554547,
-        392.07010000245646,
-        381.8407999933697
+        507.1708000032231,
+        509.1320000356063,
+        520.211199996993
       ],
       "e2e_ttft_ms": [
-        396.29689999856055,
-        419.67400000430644,
-        411.1170999822207
+        540.4058999847621,
+        534.2202000319958,
+        543.2832999504171
       ],
       "cache_tokens": [
         462,
@@ -650,8 +651,8 @@
         462
       ],
       "prompt_tokens": 1351,
-      "completion_tokens": 10,
-      "citation_correct": null,
+      "completion_tokens": 12,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -659,29 +660,29 @@
       "query": "How heavy is the laptop?",
       "lang": "en",
       "category": "basic",
-      "answer": "The laptop weighs approximately 2.5 kg.",
+      "answer": "The laptop weighs approximately 2.5 kg [1].",
       "context": [
         "row15",
         "overview"
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        23.638700018636882,
-        26.03159996215254,
-        24.947899975813925
+        24.58989998558536,
+        22.724499984178692,
+        23.458599986042827
       ],
       "ttft_ms": [
-        203.27050000196323,
-        211.55559999169782,
-        211.23810001881793
+        271.72339998651296,
+        296.50980001315475,
+        268.4282999834977
       ],
       "e2e_ttft_ms": [
-        226.9092000206001,
-        237.58719995385036,
-        236.18599999463186
+        296.3132999720983,
+        319.23429999733344,
+        291.88689996954054
       ],
       "cache_tokens": [
         462,
@@ -689,8 +690,8 @@
         462
       ],
       "prompt_tokens": 849,
-      "completion_tokens": 11,
-      "citation_correct": null,
+      "completion_tokens": 13,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -698,7 +699,7 @@
       "query": "What is the screen refresh rate?",
       "lang": "en",
       "category": "basic",
-      "answer": "The screen refresh rate is 240Hz.",
+      "answer": "The screen refresh rate is 240Hz [1].",
       "context": [
         "row03",
         "row02_variants",
@@ -706,22 +707,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        25.02429997548461,
-        33.62169995671138,
-        29.542599979322404
+        23.45969999441877,
+        26.487700000870973,
+        26.108000020030886
       ],
       "ttft_ms": [
-        330.9972999850288,
-        345.92270001303405,
-        336.585599987302
+        431.76309997215867,
+        421.47090000798926,
+        472.09499997552484
       ],
       "e2e_ttft_ms": [
-        356.0215999605134,
-        379.5443999697454,
-        366.1281999666244
+        455.22279996657744,
+        447.95860000886023,
+        498.20299999555573
       ],
       "cache_tokens": [
         463,
@@ -729,8 +730,8 @@
         463
       ],
       "prompt_tokens": 1228,
-      "completion_tokens": 12,
-      "citation_correct": null,
+      "completion_tokens": 14,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -738,7 +739,7 @@
       "query": "Does it support Wi-Fi 7?",
       "lang": "en",
       "category": "basic",
-      "answer": "Yes, it supports Wi-Fi 7 (802.11be 2x2).",
+      "answer": "Yes, it supports Wi-Fi 7 (802.11be 2x2) [1].",
       "context": [
         "row09",
         "row07",
@@ -746,22 +747,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        30.695499968715012,
-        29.844400007277727,
-        31.98029997292906
+        30.62939998926595,
+        29.645800008438528,
+        26.610400003846735
       ],
       "ttft_ms": [
-        219.07629998167977,
-        227.64749999623746,
-        223.07320003164932
+        297.79370001051575,
+        297.1263999934308,
+        306.18229997344315
       ],
       "e2e_ttft_ms": [
-        249.77179995039478,
-        257.4919000035152,
-        255.05350000457838
+        328.4230999997817,
+        326.77220000186935,
+        332.7926999772899
       ],
       "cache_tokens": [
         463,
@@ -769,8 +770,8 @@
         463
       ],
       "prompt_tokens": 930,
-      "completion_tokens": 22,
-      "citation_correct": null,
+      "completion_tokens": 25,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -778,7 +779,7 @@
       "query": "How many cores and threads does the processor have?",
       "lang": "en",
       "category": "basic",
-      "answer": "The processor has 24 cores and 24 threads.",
+      "answer": "The processor has 24 cores and 24 threads. [1]",
       "context": [
         "row01",
         "overview",
@@ -786,22 +787,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        51.82110000168905,
-        39.594999980181456,
-        42.164099984802306
+        37.353400024585426,
+        37.36650000791997,
+        37.15010004816577
       ],
       "ttft_ms": [
-        304.46369998389855,
-        321.95399998454377,
-        319.8965999763459
+        418.33340004086494,
+        411.5676000365056,
+        415.0874000042677
       ],
       "e2e_ttft_ms": [
-        356.2847999855876,
-        361.5489999647252,
-        362.0606999611482
+        455.68680006545037,
+        448.9341000444256,
+        452.23750005243346
       ],
       "cache_tokens": [
         462,
@@ -809,8 +810,8 @@
         462
       ],
       "prompt_tokens": 1137,
-      "completion_tokens": 14,
-      "citation_correct": null,
+      "completion_tokens": 17,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -818,7 +819,7 @@
       "query": "What security features does it have?",
       "lang": "en",
       "category": "basic",
-      "answer": "The AORUS MASTER 16 AM6H has the following security features:\n\n- Firmware-based TPM, supports Intel® Platform Trust Technology (Intel® PTT)",
+      "answer": "Firmware-based TPM, supports Intel® Platform Trust Technology (Intel® PTT) [1].",
       "context": [
         "row11",
         "row00",
@@ -828,22 +829,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        26.152600010391325,
-        31.986899964977056,
-        27.286299970000982
+        29.684500012081116,
+        25.107900029979646,
+        27.368700015358627
       ],
       "ttft_ms": [
-        223.09530002530664,
-        230.82370002521202,
-        240.03619997529313
+        279.5411999686621,
+        303.5305999801494,
+        290.9557000384666
       ],
       "e2e_ttft_ms": [
-        249.24790003569797,
-        262.8105999901891,
-        267.3224999452941
+        309.22569998074323,
+        328.63850001012906,
+        318.32440005382523
       ],
       "cache_tokens": [
         462,
@@ -851,8 +852,8 @@
         462
       ],
       "prompt_tokens": 930,
-      "completion_tokens": 35,
-      "citation_correct": null,
+      "completion_tokens": 21,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -860,7 +861,7 @@
       "query": "What storage options are available?",
       "lang": "en",
       "category": "basic",
-      "answer": "The available storage options are:\n- 1x PCIe Gen5 M.2 slot\n- 1x PCIe Gen4x4 M.2 slots\n- Up to 4TB PCIe NVMe™ M.2 SSD",
+      "answer": "The available storage options include 1x PCIe Gen5 M.2 slot and 1x PCIe Gen4x4 M.2 slot, with a maximum capacity of up to 4TB PCIe NVMe™ M.2 SSD. [1]",
       "context": [
         "row05",
         "overview",
@@ -870,22 +871,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        25.429199973586947,
-        30.535500030964613,
-        26.518300001043826
+        27.33099996112287,
+        22.4582000519149,
+        22.665199998300523
       ],
       "ttft_ms": [
-        409.70300004119053,
-        416.02100001182407,
-        425.4668000503443
+        526.0521000018343,
+        538.0725999712013,
+        546.4989999891259
       ],
       "e2e_ttft_ms": [
-        435.1322000147775,
-        446.5565000427887,
-        451.98510005138814
+        553.3830999629572,
+        560.5308000231162,
+        569.1641999874264
       ],
       "cache_tokens": [
         462,
@@ -893,8 +894,8 @@
         462
       ],
       "prompt_tokens": 1412,
-      "completion_tokens": 47,
-      "citation_correct": null,
+      "completion_tokens": 52,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -902,7 +903,7 @@
       "query": "這台的 RAM 是 DDR5 嗎？",
       "lang": "mix",
       "category": "mixed",
-      "answer": "是的，這台的記憶體是 DDR5。",
+      "answer": "是的，這台的 RAM 是 DDR5。[1]",
       "context": [
         "row04",
         "overview",
@@ -912,22 +913,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        33.38610002538189,
-        35.000700037926435,
-        36.57759999623522
+        37.32480003964156,
+        33.8245999882929,
+        36.492499988526106
       ],
       "ttft_ms": [
-        415.7932000234723,
-        414.8305000271648,
-        413.15450001275167
+        542.0276999939233,
+        548.70280000614,
+        538.9568000100553
       ],
       "e2e_ttft_ms": [
-        449.1793000488542,
-        449.83120006509125,
-        449.7321000089869
+        579.3525000335649,
+        582.5273999944329,
+        575.4492999985814
       ],
       "cache_tokens": [
         462,
@@ -935,8 +936,8 @@
         462
       ],
       "prompt_tokens": 1388,
-      "completion_tokens": 14,
-      "citation_correct": null,
+      "completion_tokens": 15,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -944,7 +945,7 @@
       "query": "螢幕有支援 G-SYNC 嗎？",
       "lang": "mix",
       "category": "mixed",
-      "answer": "螢幕支援 G-SYNC。",
+      "answer": "有支援 G-SYNC。[1]",
       "context": [
         "row03",
         "row02_variants",
@@ -954,22 +955,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        34.29169999435544,
-        37.45350003009662,
-        35.32249998534098
+        35.50660004839301,
+        33.81789999548346,
+        35.20689997822046
       ],
       "ttft_ms": [
-        434.5830999664031,
-        428.89500001911074,
-        435.16590003855526
+        547.9252999648452,
+        563.658699975349,
+        551.6212999937125
       ],
       "e2e_ttft_ms": [
-        468.87479996075854,
-        466.34850004920736,
-        470.48840002389625
+        583.4319000132382,
+        597.4765999708325,
+        586.8281999719329
       ],
       "cache_tokens": [
         462,
@@ -977,8 +978,8 @@
         462
       ],
       "prompt_tokens": 1410,
-      "completion_tokens": 9,
-      "citation_correct": null,
+      "completion_tokens": 10,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -986,7 +987,7 @@
       "query": "SSD 最大支援多少 TB？",
       "lang": "mix",
       "category": "mixed",
-      "answer": "SSD 最大支援 4TB。",
+      "answer": "SSD 最大支援 4TB。[1]",
       "context": [
         "row05",
         "overview",
@@ -995,22 +996,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        25.850100035313517,
-        29.948099981993437,
-        29.107400041539222
+        31.03949996875599,
+        27.995700016617775,
+        29.65719997882843
       ],
       "ttft_ms": [
-        369.6007000398822,
-        378.6833999911323,
-        373.35690000327304
+        482.94560000067577,
+        487.56280000088736,
+        482.54329996416345
       ],
       "e2e_ttft_ms": [
-        395.45080007519573,
-        408.63149997312576,
-        402.46430004481226
+        513.9850999694318,
+        515.5585000175051,
+        512.2004999429919
       ],
       "cache_tokens": [
         462,
@@ -1018,8 +1019,8 @@
         462
       ],
       "prompt_tokens": 1305,
-      "completion_tokens": 10,
-      "citation_correct": null,
+      "completion_tokens": 13,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1027,7 +1028,7 @@
       "query": "有 HDMI 嗎？是什麼版本？",
       "lang": "mix",
       "category": "mixed",
-      "answer": "有 HDMI，版本為 HDMI 2.1。",
+      "answer": "有 HDMI，版本為 HDMI 2.1。[1]",
       "context": [
         "row07",
         "row02_variants",
@@ -1037,22 +1038,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        30.128799960948527,
-        32.111299980897456,
-        30.897699994966388
+        27.94310002354905,
+        31.976500002201647,
+        33.89940003398806
       ],
       "ttft_ms": [
-        518.2723999605514,
-        510.79110003774986,
-        521.4182999916375
+        657.7908999752253,
+        680.3774000145495,
+        699.7259999625385
       ],
       "e2e_ttft_ms": [
-        548.4011999214999,
-        542.9024000186473,
-        552.3159999866039
+        685.7339999987744,
+        712.3539000167511,
+        733.6253999965265
       ],
       "cache_tokens": [
         462,
@@ -1060,8 +1061,8 @@
         462
       ],
       "prompt_tokens": 1641,
-      "completion_tokens": 12,
-      "citation_correct": null,
+      "completion_tokens": 15,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1069,28 +1070,28 @@
       "query": "Thunderbolt 5 的孔在哪一側？",
       "lang": "mix",
       "category": "mixed",
-      "answer": "Thunderbolt™5 的孔在左側。",
+      "answer": "Thunderbolt™5 的孔在左側 [1]。",
       "context": [
         "row07"
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        36.629100039135665,
-        36.076200020033866,
-        38.94489997765049
+        33.08880003169179,
+        36.30769997835159,
+        35.577100003138185
       ],
       "ttft_ms": [
-        54.006499995011836,
-        60.86460000369698,
-        68.68889997713268
+        66.78789999568835,
+        55.28469994897023,
+        68.92490002792329
       ],
       "e2e_ttft_ms": [
-        90.6356000341475,
-        96.94080002373084,
-        107.63379995478317
+        99.87670002738014,
+        91.59239992732182,
+        104.50200003106147
       ],
       "cache_tokens": [
         748,
@@ -1098,8 +1099,8 @@
         748
       ],
       "prompt_tokens": 782,
-      "completion_tokens": 11,
-      "citation_correct": null,
+      "completion_tokens": 14,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1107,28 +1108,28 @@
       "query": "OLED 面板的亮度是多少 nits？",
       "lang": "mix",
       "category": "mixed",
-      "answer": "OLED 面板的亮度是 500 nits (峰值)。",
+      "answer": "500nits (peak) [1]",
       "context": [
         "row03"
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        34.39099999377504,
-        38.10529998736456,
-        41.940400027669966
+        33.337000000756234,
+        34.65950000099838,
+        38.93689997494221
       ],
       "ttft_ms": [
-        109.94599998230115,
-        110.82300002453849,
-        112.99769999459386
+        132.11339997360483,
+        144.04030004516244,
+        134.4987999764271
       ],
       "e2e_ttft_ms": [
-        144.33699997607619,
-        148.92830001190305,
-        154.93810002226382
+        165.45039997436106,
+        178.69980004616082,
+        173.43569995136932
       ],
       "cache_tokens": [
         463,
@@ -1136,8 +1137,8 @@
         463
       ],
       "prompt_tokens": 636,
-      "completion_tokens": 20,
-      "citation_correct": null,
+      "completion_tokens": 12,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1145,7 +1146,7 @@
       "query": "BXH 的顯卡功耗是多少？",
       "lang": "zh",
       "category": "sku",
-      "answer": "BXH 的顯卡功耗最高可達 140W。",
+      "answer": "BXH 的顯卡功耗為 140W Maximum Graphics Power with Dynamic Boost* [1]。",
       "context": [
         "row02_BXH",
         "overview",
@@ -1155,22 +1156,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        32.1438999962993,
-        36.227600008714944,
-        37.02479996718466
+        32.830199983436614,
+        33.311499981209636,
+        34.339900012128055
       ],
       "ttft_ms": [
-        358.7969000218436,
-        350.8772000204772,
-        364.87640003906563
+        460.53819998633116,
+        456.9061999791302,
+        460.9869999694638
       ],
       "e2e_ttft_ms": [
-        390.9408000181429,
-        387.1048000291921,
-        401.9012000062503
+        493.3683999697678,
+        490.2176999603398,
+        495.32689998159185
       ],
       "cache_tokens": [
         440,
@@ -1178,8 +1179,8 @@
         440
       ],
       "prompt_tokens": 1238,
-      "completion_tokens": 17,
-      "citation_correct": null,
+      "completion_tokens": 25,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1187,7 +1188,7 @@
       "query": "5080 版本的顯存多大？",
       "lang": "zh",
       "category": "sku",
-      "answer": "5080 版本的顯存是 16GB GDDR7。",
+      "answer": "16GB GDDR7 [1]。",
       "context": [
         "row02_BYH",
         "overview",
@@ -1195,22 +1196,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        35.285300051327795,
-        30.974900000728667,
-        34.55199999734759
+        31.231099972501397,
+        32.14610001305118,
+        31.338399974629283
       ],
       "ttft_ms": [
-        260.64140000380576,
-        263.2443999755196,
-        275.3182000014931
+        312.8335000365041,
+        333.152900042478,
+        343.85379997547716
       ],
       "e2e_ttft_ms": [
-        295.92670005513355,
-        294.2192999762483,
-        309.8701999988407
+        344.0646000090055,
+        365.2990000555292,
+        375.19219995010644
       ],
       "cache_tokens": [
         451,
@@ -1218,8 +1219,8 @@
         451
       ],
       "prompt_tokens": 977,
-      "completion_tokens": 20,
-      "citation_correct": null,
+      "completion_tokens": 11,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1227,7 +1228,7 @@
       "query": "What GPU does the BZH model have?",
       "lang": "en",
       "category": "sku",
-      "answer": "The BZH model has an NVIDIA® GeForce RTX™ 5090 Laptop GPU.",
+      "answer": "The BZH model has the NVIDIA® GeForce RTX™ 5090 Laptop GPU [1].",
       "context": [
         "row02_BZH",
         "overview",
@@ -1236,22 +1237,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        30.979900038801134,
-        32.76570001617074,
-        33.04089995799586
+        29.55189999192953,
+        32.0318000158295,
+        27.188499982003123
       ],
       "ttft_ms": [
-        278.48350000567734,
-        272.03469997039065,
-        294.3442999967374
+        352.34919999493286,
+        356.4485000097193,
+        354.88769999938086
       ],
       "e2e_ttft_ms": [
-        309.4634000444785,
-        304.8003999865614,
-        327.38519995473325
+        381.9010999868624,
+        388.4803000255488,
+        382.076199981384
       ],
       "cache_tokens": [
         451,
@@ -1259,8 +1260,8 @@
         451
       ],
       "prompt_tokens": 1050,
-      "completion_tokens": 21,
-      "citation_correct": null,
+      "completion_tokens": 23,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1268,7 +1269,7 @@
       "query": "三個型號差在哪？",
       "lang": "zh",
       "category": "sku",
-      "answer": "三個型號的主要差異在於顯示晶片的不同：\n\n- AORUS MASTER 16 BZH 使用 NVIDIA® GeForce RTX™ 5090 Laptop GPU\n- AORUS MASTER 16 BYH 使用 NVIDIA® GeForce RTX™ 5080 Laptop GPU\n- AORUS MASTER 16 BXH 使用 NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU",
+      "answer": "三個型號的主要差異在於顯示晶片（Video Graphics）的型號與相關規格，其他所有規格皆相同。詳細對比如下：\n\n- AORUS MASTER 16 BZH：NVIDIA® GeForce RTX™ 5090 Laptop GPU，搭配 24GB GDDR7，最高顯示功率 175W，AI Boost 頻率 1797 MHz（1597 MHz 基準頻率 + 200 MHz OC）[1]\n- AORUS MASTER 16 BYH：NVIDIA® GeForce RTX™ 5080 Laptop GPU，搭配 16GB GDDR7，最高顯示功率 175W，AI Boost 頻率 1902 MHz（1702 MHz 基準頻率 + 200 MHz OC）[1]\n- AORUS MASTER 16 BXH：NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU，搭配 12GB GDDR7，最高顯示功率 140W，AI Boost 頻率 1962 MHz（1762 MHz 基準頻率 + 200 MHz OC）[1]\n\n其他規格（如連接埠、顏色、鍵盤、尺寸等）在所有型號中均一致。",
       "context": [
         "row02_variants",
         "row07",
@@ -1278,22 +1279,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        29.8406999791041,
-        32.71659999154508,
-        30.06790002109483
+        28.772099991329014,
+        29.438700003083795,
+        29.68530001817271
       ],
       "ttft_ms": [
-        385.53510000929236,
-        390.1958999922499,
-        393.99429998593405
+        491.56749999383464,
+        508.64030001685023,
+        512.2330000158399
       ],
       "e2e_ttft_ms": [
-        415.37579998839647,
-        422.912499983795,
-        424.0622000070289
+        520.3395999851637,
+        538.079000019934,
+        541.9183000340126
       ],
       "cache_tokens": [
         440,
@@ -1301,8 +1302,8 @@
         440
       ],
       "prompt_tokens": 1300,
-      "completion_tokens": 89,
-      "citation_correct": null,
+      "completion_tokens": 301,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1310,7 +1311,7 @@
       "query": "顯卡是什麼？",
       "lang": "zh",
       "category": "sku",
-      "answer": "顯卡是 NVIDIA® GeForce RTX™ 5090 Laptop GPU、NVIDIA® GeForce RTX™ 5080 Laptop GPU 或 NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU，依各型號的不同而有所差異。",
+      "answer": "顯卡為 NVIDIA® GeForce RTX™ 5090 Laptop GPU、NVIDIA® GeForce RTX™ 5080 Laptop GPU 或 NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU，依型號分別為 BZH、BYH、BXH [1]。",
       "context": [
         "row02_variants",
         "overview",
@@ -1320,22 +1321,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        24.248900008387864,
-        26.071400032378733,
-        25.305300019681454
+        36.21950000524521,
+        25.77250002650544,
+        32.32440003193915
       ],
       "ttft_ms": [
-        306.8920000223443,
-        315.2217999449931,
-        317.07320001441985
+        397.6463000290096,
+        410.97579995403066,
+        389.6480000112206
       ],
       "e2e_ttft_ms": [
-        331.14090003073215,
-        341.29319997737184,
-        342.3785000341013
+        433.8658000342548,
+        436.7482999805361,
+        421.9724000431597
       ],
       "cache_tokens": [
         731,
@@ -1343,8 +1344,8 @@
         731
       ],
       "prompt_tokens": 1394,
-      "completion_tokens": 58,
-      "citation_correct": null,
+      "completion_tokens": 65,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1352,7 +1353,7 @@
       "query": "RTX 5070 Ti 版本的電池容量跟其他型號一樣嗎？",
       "lang": "mix",
       "category": "sku",
-      "answer": "不是，RTX 5070 Ti 版本的電池容量為 99Wh，與 RTX 5090 和 RTX 5080 版本的電池容量相同。",
+      "answer": "是的，RTX 5070 Ti 版本的電池容量與其他型號一樣，皆為 99Wh [3]。",
       "context": [
         "row02_BXH",
         "overview",
@@ -1360,22 +1361,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        51.45049997372553,
-        49.15490001440048,
-        47.81009996077046
+        49.97760005062446,
+        47.1358000067994,
+        47.98470000969246
       ],
       "ttft_ms": [
-        250.68429997190833,
-        249.32800000533462,
-        261.3565999781713
+        326.3850000221282,
+        317.01860000612214,
+        319.0391999669373
       ],
       "e2e_ttft_ms": [
-        302.13479994563386,
-        298.4829000197351,
-        309.16669993894175
+        376.3626000727527,
+        364.15440001292154,
+        367.02389997662976
       ],
       "cache_tokens": [
         440,
@@ -1383,8 +1384,8 @@
         440
       ],
       "prompt_tokens": 965,
-      "completion_tokens": 49,
-      "citation_correct": null,
+      "completion_tokens": 35,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1392,29 +1393,29 @@
       "query": "這台有幾個 USB 孔？",
       "lang": "zh",
       "category": "aggregate",
-      "answer": "這台有 4 個 USB 孔。",
+      "answer": "這台有 4 個 USB 孔。  \n[1]",
       "context": [
         "row07",
         "row05"
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        30.030000023543835,
-        32.01020002597943,
-        31.748799956403673
+        31.86330001335591,
+        26.43800002988428,
+        28.63220003200695
       ],
       "ttft_ms": [
-        226.69659997336566,
-        228.08319999603555,
-        243.26050002127886
+        295.36910000024363,
+        302.6957000256516,
+        300.20080000394955
       ],
       "e2e_ttft_ms": [
-        256.7265999969095,
-        260.093400022015,
-        275.00929997768253
+        327.23240001359954,
+        329.1337000555359,
+        328.8330000359565
       ],
       "cache_tokens": [
         440,
@@ -1422,8 +1423,8 @@
         440
       ],
       "prompt_tokens": 951,
-      "completion_tokens": 13,
-      "citation_correct": null,
+      "completion_tokens": 17,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1431,7 +1432,7 @@
       "query": "How many Type-C ports are there?",
       "lang": "en",
       "category": "aggregate",
-      "answer": "There are 2 Type-C ports.\n\n[1]",
+      "answer": "There are 2 Type-C ports: one with Thunderbolt™5 on the left side and one with Thunderbolt™4 on the right side [1].",
       "context": [
         "row07"
       ],
@@ -1440,19 +1441,19 @@
       "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        35.7553000212647,
-        34.53430003719404,
-        35.10400000959635
+        30.96860001096502,
+        30.24980000918731,
+        33.073099970351905
       ],
       "ttft_ms": [
-        58.55800001882017,
-        51.147199992556125,
-        56.5911999437958
+        59.98219997854903,
+        58.21510002715513,
+        57.602500019129366
       ],
       "e2e_ttft_ms": [
-        94.31330004008487,
-        85.68150002975017,
-        91.69519995339215
+        90.95079998951405,
+        88.46490003634244,
+        90.67559998948127
       ],
       "cache_tokens": [
         748,
@@ -1460,7 +1461,7 @@
         748
       ],
       "prompt_tokens": 773,
-      "completion_tokens": 12,
+      "completion_tokens": 33,
       "citation_correct": true,
       "bad_citations": []
     },
@@ -1469,7 +1470,7 @@
       "query": "可以插記憶卡嗎？",
       "lang": "zh",
       "category": "colloquial",
-      "answer": "可以插記憶卡，具有一個 MicroSD插槽。",
+      "answer": "可以插記憶卡。產品提供 1 x MicroSD（UHS-II）插槽，可用於插入記憶卡 [3]。",
       "context": [
         "row04",
         "overview",
@@ -1479,22 +1480,22 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        32.15399995679036,
-        26.996700034942478,
-        39.0940000070259
+        28.74149999115616,
+        29.001699993386865,
+        30.933699978049845
       ],
       "ttft_ms": [
-        504.9437000416219,
-        530.1877000019886,
-        502.8288000030443
+        679.8839999828488,
+        681.9197000004351,
+        680.8835999690928
       ],
       "e2e_ttft_ms": [
-        537.0976999984123,
-        557.184400036931,
-        541.9228000100702
+        708.6254999740049,
+        710.921399993822,
+        711.8172999471426
       ],
       "cache_tokens": [
         462,
@@ -1502,8 +1503,8 @@
         462
       ],
       "prompt_tokens": 1631,
-      "completion_tokens": 15,
-      "citation_correct": null,
+      "completion_tokens": 32,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1511,7 +1512,7 @@
       "query": "介紹一下這台筆電",
       "lang": "zh",
       "category": "aggregate",
-      "answer": "這台技嘉 GIGABYTE AORUS MASTER 16 AM6H 笔記型電腦有三個型號：BZH、BYH、BXH，其餘規格皆相同。各型號的中央處理器為 Intel® Core™ Ultra 9 Processor 275HX，記憶體最高可達 64GB DDR5 5600MHz，並配備 16 吋 16:10 OLED WQXGA (2560×1600) 240Hz 顯示器，支援 1ms 延遲、1,000,000:1 的對比度和 500nits 的亮度。此外，它還配備了 1,000,000:1 的對比度、100% 的 DCIP-3 色域、240Hz 的刷新率和 1ms 的延遲。\n\n各型號的顯示晶片如下：\n- BZH 型號配備 NVIDIA® GeForce RTX™ 5090 Laptop GPU，記憶體為 24GB GDDR7，最大圖形功率為 175W，支援 Dynamic Boost* 和 AI Boost，最高頻率為 1797 MHz。\n- BYH 型號配備 NVIDIA® GeForce RTX™ 5080 Laptop GPU，記憶體為 16GB GDDR7，最大圖形功率為 175W，支援 Dynamic Boost* 和 AI Boost，最高頻率為 1902 MHz。\n- BXH 型號配備 NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU，記憶體為 12GB GDDR7，最大圖形功率為 140W，支援 Dynamic Boost* 和 AI Boost，最高頻率為 1962 MHz。\n\n筆電配備了 4 個 USB 連接埠，包括 2 個 Type-A (USB3.2 Gen2) 和 2 個 Type-C (Thunderbolt™5 和 Thunderbolt™4)，支援 USB4、DisplayPort™ 2.1 和 Power Delivery 3.0。此外，它還配備了 MicroSD (UHS-II) 和一個耳機/麥克風二合一的音響插孔",
+      "answer": "技嘉 AORUS MASTER 16 AM6H 是一款高性能筆電，提供三種顯示晶片型號：BZH（RTX 5090）、BYH（RTX 5080）與 BXH（RTX 5070 Ti），其餘規格完全相同。  \n\n- 中央處理器：Intel® Core™ Ultra 9 Processor 275HX，最高頻率達 5.4 GHz，具備 24 核心與 24 線程，搭配 36MB 缓存 [1]。  \n- 顯示晶片：依型號不同，分別為 RTX 5090（24GB GDDR7，最高 175W）、RTX 5080（16GB GDDR7，最高 175W）、RTX 5070 Ti（12GB GDDR7，最高 140W），皆支援 Dynamic Boost 與 AI Boost 功能 [2]。  \n- 顯示器：16 吋 16:10 比例 OLED WQXGA（2560×1600）螢幕，支援 240Hz 高刷新率、1ms 延遲、DCIP-3 調色、峰值亮度 500nits、1,000,000:1 动态對比 [1]。  \n- 記憶體：最高支援 64GB DDR5 5600MHz，提供兩組 SO-DIMM 插槽可擴充 [1]。  \n- 儲存裝置：支援 1x PCIe Gen5 與 1x PCIe Gen4x4 M.2 接口，最大可裝 4TB PCIe NVMe™ M.2 SSD [1]。  \n- 電池：Li-ion 99Wh，提供長時間使用 [1]。  \n- 重量：約 2.5 kg [1]。  \n- 連接埠：共 4 個 USB 連接埠（2 個 Type-A USB3.2 Gen2，1 個 Thunderbolt™5，1 個 Thunderbolt™4），另備 HDMI 2.1、RJ-4",
       "context": [
         "overview",
         "row02_variants",
@@ -1521,24 +1522,24 @@
       ],
       "correct": true,
       "refused": false,
-      "cited": false,
+      "cited": true,
       "simplified_chars": [
-        "笔"
+        "动"
       ],
       "retrieval_ms": [
-        27.34000002965331,
-        30.808000010438263,
-        32.191500009503216
+        26.829899987205863,
+        32.584300031885505,
+        23.990600020624697
       ],
       "ttft_ms": [
-        479.21919997315854,
-        485.3393000084907,
-        497.2816000226885
+        625.1710999640636,
+        638.3705000043847,
+        654.3984999880195
       ],
       "e2e_ttft_ms": [
-        506.55920000281185,
-        516.147300018929,
-        529.4731000321917
+        652.0009999512695,
+        670.9548000362702,
+        678.3891000086442
       ],
       "cache_tokens": [
         440,
@@ -1547,7 +1548,7 @@
       ],
       "prompt_tokens": 1537,
       "completion_tokens": 512,
-      "citation_correct": null,
+      "citation_correct": true,
       "bad_citations": []
     },
     {
@@ -1568,19 +1569,19 @@
       "cited": false,
       "simplified_chars": [],
       "retrieval_ms": [
-        47.382400021888316,
-        28.901400044560432,
-        25.547600002028048
+        35.3703000000678,
+        29.997600009664893,
+        37.81639999942854
       ],
       "ttft_ms": [
-        351.9578000414185,
-        367.84100002842024,
-        380.5613999720663
+        474.52300001168624,
+        487.10609995760024,
+        474.84460001578555
       ],
       "e2e_ttft_ms": [
-        399.34020006330684,
-        396.7424000729807,
-        406.10899997409433
+        509.89330001175404,
+        517.1036999672651,
+        512.6610000152141
       ],
       "cache_tokens": [
         440,
@@ -1597,30 +1598,30 @@
       "query": "電池續航力可以撐幾小時？",
       "lang": "zh",
       "category": "unanswerable",
-      "answer": "電池續航力可以撐約 9 小時。",
+      "answer": "規格資料中未提及此資訊。",
       "context": [
         "row12",
         "overview",
         "row02_variants"
       ],
-      "correct": false,
-      "refused": false,
+      "correct": true,
+      "refused": true,
       "cited": false,
       "simplified_chars": [],
       "retrieval_ms": [
-        32.677299983333796,
-        33.95429998636246,
-        32.65720000490546
+        33.56539999367669,
+        31.364499998744577,
+        32.56999998120591
       ],
       "ttft_ms": [
-        307.2253999998793,
-        312.87359999259934,
-        322.5421999813989
+        398.99250003509223,
+        401.2872999883257,
+        439.7441999753937
       ],
       "e2e_ttft_ms": [
-        339.9026999832131,
-        346.8278999789618,
-        355.19939998630434
+        432.5579000287689,
+        432.65179998707026,
+        472.3141999565996
       ],
       "cache_tokens": [
         462,
@@ -1628,7 +1629,7 @@
         462
       ],
       "prompt_tokens": 1114,
-      "completion_tokens": 15,
+      "completion_tokens": 10,
       "citation_correct": null,
       "bad_citations": []
     },
@@ -1637,7 +1638,7 @@
       "query": "CPU 的 TDP 是多少瓦？",
       "lang": "mix",
       "category": "unanswerable",
-      "answer": "CPU 的 TDP 是 5.4 GHz。",
+      "answer": "Intel® Core™ Ultra 9 Processor 275HX 的最高頻率為 5.4 GHz，核心數為 24 核心 24 線程，但規格資料中未提及 CPU 的 TDP（熱設計功耗）值。  \n[2]",
       "context": [
         "row02_variants",
         "row01",
@@ -1645,24 +1646,24 @@
         "row03",
         "row11"
       ],
-      "correct": false,
-      "refused": false,
-      "cited": false,
+      "correct": true,
+      "refused": true,
+      "cited": true,
       "simplified_chars": [],
       "retrieval_ms": [
-        37.72049996769056,
-        35.738600010517985,
-        37.785900000017136
+        34.69200001563877,
+        34.64100003475323,
+        30.73860000586137
       ],
       "ttft_ms": [
-        411.1162999761291,
-        424.979799950961,
-        411.40820004511625
+        538.8180000009015,
+        542.1092999749817,
+        553.6284999689087
       ],
       "e2e_ttft_ms": [
-        448.83679994381964,
-        460.718399961479,
-        449.1941000451334
+        573.5100000165403,
+        576.7503000097349,
+        584.3670999747701
       ],
       "cache_tokens": [
         440,
@@ -1670,9 +1671,14 @@
         440
       ],
       "prompt_tokens": 1386,
-      "completion_tokens": 12,
+      "completion_tokens": 65,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [
+        [
+          2,
+          "row01"
+        ]
+      ]
     },
     {
       "id": "q40",
@@ -1692,19 +1698,19 @@
       "cited": false,
       "simplified_chars": [],
       "retrieval_ms": [
-        30.019500001799315,
-        32.50780003145337,
-        31.093499972485006
+        28.39200000744313,
+        27.982000028714538,
+        28.49699999205768
       ],
       "ttft_ms": [
-        325.726900016889,
-        318.6678999918513,
-        327.86900002975017
+        418.49310003453866,
+        427.8289000503719,
+        421.6189999715425
       ],
       "e2e_ttft_ms": [
-        355.7464000186883,
-        351.17570002330467,
-        358.9625000022352
+        446.8851000419818,
+        455.8109000790864,
+        450.1159999636002
       ],
       "cache_tokens": [
         440,
@@ -1721,7 +1727,7 @@
       "query": "When was this laptop released?",
       "lang": "en",
       "category": "unanswerable",
-      "answer": "規格資料中未提及此資訊。",
+      "answer": "This information is not listed in the specifications.",
       "context": [
         "overview",
         "row02_variants",
@@ -1734,19 +1740,19 @@
       "cited": false,
       "simplified_chars": [],
       "retrieval_ms": [
-        31.642200017813593,
-        25.146900035906583,
-        24.069299979601055
+        24.131999991368502,
+        22.741900000255555,
+        24.071299994830042
       ],
       "ttft_ms": [
-        419.4116999860853,
-        418.37590001523495,
-        431.50489998515695
+        533.2167000160553,
+        552.8099000221118,
+        543.7401999952272
       ],
       "e2e_ttft_ms": [
-        451.0539000038989,
-        443.52280005114153,
-        455.574199964758
+        557.3487000074238,
+        575.5518000223674,
+        567.8114999900572
       ],
       "cache_tokens": [
         440,
@@ -1776,19 +1782,19 @@
       "cited": false,
       "simplified_chars": [],
       "retrieval_ms": [
-        27.293499966617674,
-        28.240000014193356,
-        32.295399985741824
+        24.26139998715371,
+        29.420699982438236,
+        27.958699967712164
       ],
       "ttft_ms": [
-        274.8107999796048,
-        284.69549998408183,
-        283.0411000177264
+        362.9590999917127,
+        368.438400037121,
+        370.43179996544495
       ],
       "e2e_ttft_ms": [
-        302.10429994622245,
-        312.9354999982752,
-        315.33650000346825
+        387.2204999788664,
+        397.85910001955926,
+        398.3904999331571
       ],
       "cache_tokens": [
         440,
@@ -1804,27 +1810,27 @@
   "throughput": {
     "runs": 5,
     "tokens": 256,
-    "client_tps_mean": 68.44457558520631,
-    "client_tps_std": 0.12288081764177537,
-    "server_tps_mean": 68.44302223695401,
-    "server_tps_std": 0.12290150411810251
+    "client_tps_mean": 53.01474835433551,
+    "client_tps_std": 0.10290804607201108,
+    "server_tps_mean": 52.97285942377856,
+    "server_tps_std": 0.08694951464489252
   },
-  "peak_vram_mib": 2159,
+  "peak_vram_mib": 3125,
   "summary": {
     "stability": null,
     "citation_correctness": 1.0,
-    "citation_judged": 1,
+    "citation_judged": 36,
     "overall": {
       "n": 42,
-      "acc": 0.9285714285714286
+      "acc": 1.0
     },
     "answerable": {
       "n": 36,
-      "acc": 0.9722222222222222
+      "acc": 1.0
     },
     "unanswerable_refusal": {
       "n": 6,
-      "acc": 0.6666666666666666
+      "acc": 1.0
     },
     "false_refusal_rate": 0.0,
     "by_category": {
@@ -1834,7 +1840,7 @@
       },
       "basic": {
         "n": 18,
-        "acc": 0.9444444444444444
+        "acc": 1.0
       },
       "colloquial": {
         "n": 3,
@@ -1850,7 +1856,7 @@
       },
       "unanswerable": {
         "n": 6,
-        "acc": 0.6666666666666666
+        "acc": 1.0
       }
     },
     "by_lang": {
@@ -1860,34 +1866,34 @@
       },
       "mix": {
         "n": 8,
-        "acc": 0.875
+        "acc": 1.0
       },
       "zh": {
         "n": 22,
-        "acc": 0.9090909090909091
+        "acc": 1.0
       }
     },
-    "citation_rate": 0.027777777777777776,
+    "citation_rate": 1.0,
     "simplified_leak_rate": 0.03333333333333333,
     "latency_ms": {
       "retrieval": {
-        "p50": 30.9774000197649,
-        "p95": 42.10817499551922,
-        "mean": 31.541189682828854
+        "p50": 29.429699992761016,
+        "p95": 37.34625002834946,
+        "mean": 29.78140317524473
       },
       "llm_ttft": {
-        "p50": 317.8705500031356,
-        "p95": 494.29602501913905,
-        "mean": 308.08837460409404
+        "p50": 414.2656000040006,
+        "p95": 650.3914999921108,
+        "mean": 400.13682460209117
       },
       "e2e_ttft": {
-        "p50": 353.4992999921087,
-        "p95": 526.141650028876,
-        "mean": 339.6295642869229
+        "p50": 447.421850025421,
+        "p95": 676.5305250155507,
+        "mean": 429.9182277773359
       }
     },
     "avg_prompt_tokens": 1142.0238095238096,
     "avg_cached_prompt_tokens": 476.3333333333333,
-    "avg_completion_tokens": 31.88095238095238
+    "avg_completion_tokens": 40.476190476190474
   }
 }

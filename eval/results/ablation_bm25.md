@@ -1,8 +1,8 @@
-# Benchmark: v3
+# Benchmark: ablation_bm25
 
-- date: 2026-10-02T13:11:10
+- date: 2026-10-02T13:16:22
 - generator: `C:\Users\user\Desktop\技嘉面試實作\models\qwen2.5-3b-instruct-q4_k_m.gguf`
-- config: prompt=v3, k=5, mode=hybrid, prune=True, repeat=3, traditional=False
+- config: prompt=v3, k=5, mode=bm25, prune=True, repeat=1, traditional=False
 
 ## Retrieval (raw ranking, answerable questions)
 
@@ -23,8 +23,8 @@ Final context (hybrid + prune): gold chunk present **100.0%**, avg 3.75 chunks
 
 | metric | value |
 |---|---|
-| overall accuracy | 92.9% (42 q) |
-| answerable accuracy | 94.4% |
+| overall accuracy | 90.5% (42 q) |
+| answerable accuracy | 91.7% |
 | unanswerable → correct refusal | 83.3% |
 | false refusal (answerable) | 5.6% |
 | citation compliance (has [n]) | 2.8% |
@@ -34,7 +34,7 @@ Final context (hybrid + prune): gold chunk present **100.0%**, avg 3.75 chunks
 | category | n | accuracy |
 |---|---|---|
 | aggregate | 3 | 100.0% |
-| basic | 18 | 94.4% |
+| basic | 18 | 88.9% |
 | colloquial | 3 | 100.0% |
 | mixed | 6 | 100.0% |
 | sku | 6 | 83.3% |
@@ -44,17 +44,17 @@ Final context (hybrid + prune): gold chunk present **100.0%**, avg 3.75 chunks
 |---|---|---|
 | en | 12 | 100.0% |
 | mix | 8 | 75.0% |
-| zh | 22 | 95.5% |
+| zh | 22 | 90.9% |
 
 ## Latency
 
 | metric | p50 | p95 | mean |
 |---|---|---|---|
-| retrieval (ms) | 28.4 | 38.6 | 29.8 |
-| LLM TTFT (ms) | 316.4 | 491.5 | 306.2 |
-| E2E TTFT (ms) | 344.1 | 517.9 | 336.0 |
+| retrieval (ms) | 33.7 | 45.7 | 34.7 |
+| LLM TTFT (ms) | 314.9 | 483.5 | 312.4 |
+| E2E TTFT (ms) | 347.9 | 512.4 | 347.0 |
 
-- avg prompt tokens: 1193 (of which served from prompt cache: 527 — the shared system prompt), avg completion tokens: 30
+- avg prompt tokens: 1182 (of which served from prompt cache: 520 — the shared system prompt), avg completion tokens: 29
 
 ## Throughput (decode)
 
@@ -62,16 +62,18 @@ Fixed 256-token generation (ignore_eos) on a real RAG prompt, 5 runs:
 
 | measured by | TPS mean | std |
 |---|---|---|
-| client (stream timing) | 71.4 | 0.4 |
-| llama-server timings | 71.3 | 0.2 |
+| client (stream timing) | 66.5 | 0.1 |
+| llama-server timings | 66.5 | 0.1 |
 
 - peak VRAM (whole GPU): **2159 MiB** / 4096 MiB
 
-## Failures (3)
+## Failures (4)
 
 - **q09** `視訊鏡頭支援人臉辨識嗎？` → context ['row10']
   > 規格資料中未提及此資訊。
-- **q32** `RTX 5070 Ti 版本的電池容量跟其他型號一樣嗎？` → context ['row02_BXH', 'overview', 'row12']
+- **q10** `鍵盤有背光嗎？` → context ['row06']
+  > 有。
+- **q32** `RTX 5070 Ti 版本的電池容量跟其他型號一樣嗎？` → context ['row12', 'row02_BXH', 'overview']
   > 規格資料中未提及此資訊。
-- **q39** `CPU 的 TDP 是多少瓦？` → context ['row02_variants', 'row01', 'overview', 'row03', 'row11']
+- **q39** `CPU 的 TDP 是多少瓦？` → context ['row15', 'row01', 'overview', 'row02_variants', 'row03']
   > CPU 的 TDP 是 5.4 GHz。

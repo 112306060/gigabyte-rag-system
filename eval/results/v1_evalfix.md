@@ -2,7 +2,7 @@
 
 - date: 2026-10-02T13:05:55
 - generator: `C:\Users\user\Desktop\技嘉面試實作\models\qwen2.5-3b-instruct-q4_k_m.gguf`
-- config: k=5, mode=hybrid, prune=True, repeat=3
+- config: prompt=v3, k=5, mode=hybrid, prune=True, repeat=3, traditional=False
 
 ## Retrieval (raw ranking, answerable questions)
 
@@ -27,7 +27,8 @@ Final context (hybrid + prune): gold chunk present **100.0%**, avg 3.75 chunks
 | answerable accuracy | 91.7% |
 | unanswerable → correct refusal | 100.0% |
 | false refusal (answerable) | 5.6% |
-| citation rate | 13.9% |
+| citation compliance (has [n]) | 13.9% |
+| citation correctness (cited chunk supports answer) | 100.0% (5 cited answers) |
 | Simplified-Chinese leakage | 3.3% |
 
 | category | n | accuracy |

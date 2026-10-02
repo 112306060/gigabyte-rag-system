@@ -1,8 +1,8 @@
-# Benchmark: v3
+# Benchmark: ablation_dense
 
-- date: 2026-10-02T13:11:10
+- date: 2026-10-02T13:15:21
 - generator: `C:\Users\user\Desktop\技嘉面試實作\models\qwen2.5-3b-instruct-q4_k_m.gguf`
-- config: prompt=v3, k=5, mode=hybrid, prune=True, repeat=3, traditional=False
+- config: prompt=v3, k=5, mode=dense, prune=True, repeat=1, traditional=False
 
 ## Retrieval (raw ranking, answerable questions)
 
@@ -50,11 +50,11 @@ Final context (hybrid + prune): gold chunk present **100.0%**, avg 3.75 chunks
 
 | metric | p50 | p95 | mean |
 |---|---|---|---|
-| retrieval (ms) | 28.4 | 38.6 | 29.8 |
-| LLM TTFT (ms) | 316.4 | 491.5 | 306.2 |
-| E2E TTFT (ms) | 344.1 | 517.9 | 336.0 |
+| retrieval (ms) | 33.9 | 41.3 | 33.0 |
+| LLM TTFT (ms) | 311.4 | 521.4 | 310.6 |
+| E2E TTFT (ms) | 345.7 | 555.0 | 343.6 |
 
-- avg prompt tokens: 1193 (of which served from prompt cache: 527 — the shared system prompt), avg completion tokens: 30
+- avg prompt tokens: 1215 (of which served from prompt cache: 533 — the shared system prompt), avg completion tokens: 33
 
 ## Throughput (decode)
 
@@ -62,8 +62,8 @@ Fixed 256-token generation (ignore_eos) on a real RAG prompt, 5 runs:
 
 | measured by | TPS mean | std |
 |---|---|---|
-| client (stream timing) | 71.4 | 0.4 |
-| llama-server timings | 71.3 | 0.2 |
+| client (stream timing) | 66.7 | 0.4 |
+| llama-server timings | 66.7 | 0.4 |
 
 - peak VRAM (whole GPU): **2159 MiB** / 4096 MiB
 
@@ -73,5 +73,5 @@ Fixed 256-token generation (ignore_eos) on a real RAG prompt, 5 runs:
   > 規格資料中未提及此資訊。
 - **q32** `RTX 5070 Ti 版本的電池容量跟其他型號一樣嗎？` → context ['row02_BXH', 'overview', 'row12']
   > 規格資料中未提及此資訊。
-- **q39** `CPU 的 TDP 是多少瓦？` → context ['row02_variants', 'row01', 'overview', 'row03', 'row11']
+- **q39** `CPU 的 TDP 是多少瓦？` → context ['row02_variants', 'row01', 'overview', 'row11', 'row03']
   > CPU 的 TDP 是 5.4 GHz。
