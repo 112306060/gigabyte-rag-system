@@ -1,7 +1,7 @@
 """Build the chat messages sent to the generator.
 
-Design choices (small 3B model => be explicit, keep it short):
-  * Answer language is decided in code, not left to the model: a 3B model asked to
+Design choices (small models => be explicit, keep it short):
+  * Answer language is decided in code, not left to the model: a small model asked to
     "reply in the user's language" often drifts into Simplified Chinese or English.
   * Product background (the SKU -> GPU mapping) is generated from the parsed data,
     so the model always knows the three SKUs differ only in GPU even when retrieval
@@ -38,7 +38,9 @@ def _product_background() -> str:
 
 
 # Prompt versions are kept side by side so every model can be benchmarked on each one
-# (see docs/EXPERIMENTS.md). v3 is the default.
+# (see docs/EXPERIMENTS.md). The default is v2, the best version for the default generator
+# Qwen3-4B-Instruct-2507; v3 adds a guardrail that smaller models (Qwen2.5-3B) need, but
+# makes Qwen3-4B over-cautious.
 _R_GROUND = "只能根據使用者提供的 <參考資料> 回答，不可使用外部知識，不可推測或編造任何數值。"
 _R_NOT_FOUND = f"若 <參考資料> 中沒有答案，中文問題請回答「{NOT_FOUND_ZH}」，英文問題請回答 \"{NOT_FOUND_EN}\"，不要猜測。"
 _R_GPU = "若問題與顯示晶片有關但未指定型號，請分別列出各型號的規格。"
@@ -72,7 +74,7 @@ PROMPT_RULES: dict[str, list[str]] = {
         _R_PROPER, _R_FIRST, _R_GPU, _R_CONCISE, _R_CITE,
     ],
 }
-DEFAULT_PROMPT = "v3"
+DEFAULT_PROMPT = "v2"
 
 # v1 also appended a hint when the top chunk's cosine was below this value. Dropped from v2:
 # answerable/unanswerable top-1 cosine overlap on the eval set, so no threshold separates them.

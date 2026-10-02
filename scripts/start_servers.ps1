@@ -1,8 +1,9 @@
 # Start the two llama.cpp servers used by the RAG pipeline.
-#   :8080  generator  Qwen2.5-3B-Instruct Q4_K_M, fully on GPU
+#   :8080  generator  Qwen3-4B-Instruct-2507 Q4_K_M, fully on GPU (peak ~3.1 GB VRAM)
 #   :8081  embedder   bge-m3 Q8_0, CPU only (keeps the 4GB VRAM budget for generation)
+# Tighter VRAM budget: -GenModel qwen2.5-3b-instruct-q4_k_m.gguf (~2.2 GB, see docs/EXPERIMENTS.md)
 param(
-    [string]$GenModel = "qwen2.5-3b-instruct-q4_k_m.gguf",
+    [string]$GenModel = "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
     [int]$Ctx = 4096,
     [switch]$GenOnly,
     [switch]$EmbedOnly
