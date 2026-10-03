@@ -65,28 +65,31 @@ uv run aorus-rag -q "這台筆電多重？"
 ## 4. 系統架構
 
 ```mermaid
+%%{init: {"flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
     subgraph OFF["Offline｜建立知識庫"]
         direction TB
-        H["GIGABYTE 規格頁 HTML<br/>zh-TW / en-US"] --> P["Parser<br/>3 SKU × 17 欄位 = 51 筆 Key-Value"]
-        P --> C["Structure-aware Chunking<br/>21 chunks｜去重 / SKU 拆分 / Alias"]
+        H["GIGABYTE 規格頁 HTML<br/>zh-TW / en-US"] --> P["Parser<br/>3 SKU × 17 欄位 = 51 Key-Value"]
+        P --> C["Structure-aware Chunking<br/>21 chunks"]
         C --> E["BGE-M3 Embedding<br/>CPU"]
-        C --> S["BM25<br/>Sparse Index"]
+        C --> S["BM25 Sparse Index"]
         E --> V["Dense Vector Index"]
     end
 
     subgraph ON["Online｜RAG 問答"]
         direction TB
-        Q["User Query<br/>繁中 / English / Mixed"] --> HR["Hybrid Retrieval"]
-        HR --> RRF["RRF Fusion<br/>+ Context Pruning"]
-        RRF --> PB["Prompt Builder<br/>Context + Citation Rules"]
-        PB --> LLM["Qwen3-4B-Instruct-2507<br/>llama.cpp · GPU"]
+        Q["User Query<br/>繁中 / English / Mixed"] --> HR["Hybrid Retrieval<br/>Dense + BM25"]
+        HR --> RRF["RRF Fusion<br/>Context Pruning"]
+        RRF --> PB["Prompt Builder<br/>Context / Citation Rules"]
+        PB --> LLM["Qwen3-4B-Instruct-2507<br/>llama.cpp / GPU"]
         LLM --> CC["OpenCC s2tw"]
-        CC --> A["Streaming Answer<br/>+ Citations"]
+        CC --> A["Streaming Answer<br/>Citations"]
     end
 
     V --> HR
     S --> HR
+    V ~~~ Q
+    S ~~~ Q
 ```
 
 **核心模組**
