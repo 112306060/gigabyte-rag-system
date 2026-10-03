@@ -15,11 +15,13 @@ RES = Path(__file__).resolve().parent / "results"
 
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
-    cases = {c["id"]: c for c in load_cases()}
     for path in sorted(RES.glob("*.json")):
         res = json.loads(path.read_text(encoding="utf-8"))
         if "rows" not in res:
             continue
+        # each run records its question set (held-out runs use heldout_qa.jsonl)
+        qfile = RES.parent / res.get("questions", "golden_qa.jsonl")
+        cases = {c["id"]: c for c in load_cases(qfile)}
         if "cache_tokens" not in res["rows"][0]:
             # The very first run predates the benchmark fixes; it is kept untouched as a record.
             print(f"{path.stem:42s} (legacy format, left untouched)")

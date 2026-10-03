@@ -1,7 +1,7 @@
 [project]
 name = "aorus-rag"
 version = "0.1.0"
-description = "Add your description here"
+description = "Hand-written RAG for GIGABYTE AORUS MASTER 16 AM6H spec Q&A (zh-TW / English) on a 4GB-VRAM laptop GPU with llama.cpp"
 readme = "README.md"
 authors = [
     { name = "David Liu", email = "david7471906@gmail.com" }
