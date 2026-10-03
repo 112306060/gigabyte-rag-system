@@ -1,0 +1,784 @@
+{
+  "name": "heldout_final",
+  "date": "2026-10-03T12:49:09",
+  "questions": "heldout_qa.jsonl",
+  "config": {
+    "k": 5,
+    "mode": "hybrid",
+    "prune": true,
+    "repeat": 3,
+    "prompt": "v2",
+    "traditional": true
+  },
+  "retrieval": {
+    "dense": {
+      "hit@1": 0.8333333333333334,
+      "hit@3": 1.0,
+      "hit@5": 1.0,
+      "mrr": 0.888888888888889
+    },
+    "bm25": {
+      "hit@1": 0.5833333333333334,
+      "hit@3": 0.9166666666666666,
+      "hit@5": 1.0,
+      "mrr": 0.7569444444444443
+    },
+    "hybrid": {
+      "hit@1": 0.75,
+      "hit@3": 1.0,
+      "hit@5": 1.0,
+      "mrr": 0.875
+    },
+    "pruned_context": {
+      "gold_in_context": 1.0,
+      "avg_chunks": 3.1666666666666665
+    }
+  },
+  "calibration": {
+    "answerable": [
+      0.43,
+      0.446,
+      0.466,
+      0.473,
+      0.49,
+      0.518,
+      0.547,
+      0.552,
+      0.553,
+      0.596,
+      0.603,
+      0.607
+    ]
+  },
+  "model": "C:\\Users\\user\\Desktop\\技嘉面試實作\\models\\Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+  "rows": [
+    {
+      "id": "h01",
+      "query": "重量和電池容量分別是多少？",
+      "lang": "zh",
+      "category": "cross_field",
+      "answer": "重量約為 ~2.5 kg，電池容量為 Li-ion 99Wh [3]。",
+      "context": [
+        "row12",
+        "row15",
+        "overview"
+      ],
+      "correct": true,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": true,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "重量約為 ~2.5 kg，電池容量為 Li-ion 99Wh [3]。",
+        "重量約為 ~2.5 kg，電池容量為 Li-ion 99Wh [3]。",
+        "重量約為 ~2.5 kg，電池容量為 Li-ion 99Wh [3]。"
+      ],
+      "correct_runs": [
+        true,
+        true,
+        true
+      ],
+      "retrieval_ms": [
+        28.44809996895492,
+        24.281600024551153,
+        28.955499990843236
+      ],
+      "ttft_ms": [
+        272.3290000576526,
+        275.93220002017915,
+        279.94500001659617
+      ],
+      "e2e_ttft_ms": [
+        359.6996999694966,
+        357.6980999787338,
+        367.36069998005405
+      ],
+      "cache_tokens": [
+        462,
+        462,
+        462
+      ],
+      "prompt_tokens": 913,
+      "completion_tokens": 24
+    },
+    {
+      "id": "h02",
+      "query": "這台有哪些跟行動辦公比較有關的規格？",
+      "lang": "zh",
+      "category": "cross_field",
+      "answer": "這台與行動辦公比較有關的規格包括：  \n- 記憶體：支援最高 64GB DDR5 5600MHz，可透過 2x SO-DIMM 插槽擴充，提供充足的多任務處理與資料處理能力 [2]。  \n- 儲存裝置：提供 1x PCIe Gen5 M.2 與 1x PCIe Gen4x4 M.2 插槽，支援最高 4TB PCIe NVMe™ M.2 SSD，確保快速資料存取與高效能作業 [2]。  \n- 電池容量：Li-ion 99Wh，提供長時間使用與移動中的穩定電力支援 [2]。  \n- 重量：約 2.5 kg，便於攜帶與日常通勤使用 [4]。  \n- 尺寸：357 x 254 x 23~29.9 mm，設計緊湊，適合行動環境中使用 [5]。  \n\n這些規格共同提升了筆電在辦公場景下的效能、便攜性與使用彈性。",
+      "context": [
+        "row02_variants",
+        "overview",
+        "row01",
+        "row15",
+        "row14"
+      ],
+      "correct": true,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": false,
+      "bad_citations": [
+        [
+          5,
+          "row14"
+        ]
+      ],
+      "simplified_chars": [],
+      "answers_all": [
+        "這台與行動辦公比較有關的規格包括：  \n- 記憶體：支援最高 64GB DDR5 5600MHz，可透過 2x SO-DIMM 插槽擴充，提供充足的多任務處理與資料處理能力 [2]。  \n- 儲存裝置：提供 1x PCIe Gen5 M.2 與 1x PCIe Gen4x4 M.2 插槽，支援最高 4TB PCIe NVMe™ M.2 SSD，確保快速資料存取與高效能作業 [2]。  \n- 電池容量：Li-ion 99Wh，提供長時間使用與移動中的穩定電力支援 [2]。  \n- 重量：約 2.5 kg，便於攜帶與日常通勤使用 [4]。  \n- 尺寸：357 x 254 x 23~29.9 mm，設計緊湊，適合行動環境中使用 [5]。  \n\n這些規格共同提升了筆電在辦公場景下的效能、便攜性與使用彈性。",
+        "這台與行動辦公比較有關的規格包括：  \n- 記憶體：支援最高 64GB DDR5 5600MHz，可透過 2x SO-DIMM 插槽擴充，提供充足的多任務處理與資料處理能力 [2]。  \n- 儲存裝置：提供 1x PCIe Gen5 M.2 與 1x PCIe Gen4x4 M.2 插槽，支援最高 4TB PCIe NVMe™ M.2 SSD，確保快速資料存取與高效能作業 [2]。  \n- 電池容量：Li-ion 99Wh，提供長時間使用與移動中穩定運作的電力支援 [2]。  \n- 重量：約 2.5 kg，便於攜帶與日常通勤使用 [4]。  \n- 尺寸：357 x 254 x 23~29.9 mm，符合筆電行動辦公的空間需求 [5]。  \n\n這些規格共同提升筆電在移動環境下的工作效率與使用彈性。",
+        "這台與行動辦公比較有關的規格包括：  \n- 記憶體：最高支援 64GB DDR5 5600MHz，可透過 2x SO-DIMM 插槽擴充，提供充足的多任務處理與資料處理能力 [2]。  \n- 儲存裝置：支援 PCIe Gen5 M.2 與 Gen4x4 M.2，最高可達 4TB PCIe NVMe™ M.2 SSD，確保快速檔案存取與穩定的辦公效能 [2]。  \n- 電池容量：Li-ion 99Wh，提供長時間使用與移動中的續航力 [2]。  \n- 重量：約 2.5 kg，便於攜帶與日常通勤使用 [4]。  \n- 尺寸：357 x 254 x 23~29.9 mm，設計緊湊，適合行動環境中使用 [5]。  \n\n這些規格共同提升了筆電在辦公場景下的效率、便攜性與穩定性。"
+      ],
+      "correct_runs": [
+        true,
+        true,
+        true
+      ],
+      "retrieval_ms": [
+        28.272899973671883,
+        27.707899978850037,
+        34.94619997218251
+      ],
+      "ttft_ms": [
+        545.246199995745,
+        521.3946999865584,
+        546.9185000401922
+      ],
+      "e2e_ttft_ms": [
+        634.1987999621779,
+        608.0659999861382,
+        641.0338999703526
+      ],
+      "cache_tokens": [
+        440,
+        440,
+        440
+      ],
+      "prompt_tokens": 1346,
+      "completion_tokens": 251
+    },
+    {
+      "id": "h03",
+      "query": "BXH 跟 BYH 最大的規格差異是什麼？",
+      "lang": "zh",
+      "category": "sku",
+      "answer": "BXH 跟 BYH 最大的規格差異在於顯示晶片型號與其相關規格：  \n- BXH 搭載 NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU，12GB GDDR7，最大顯示效能為 140W（Dynamic Boost）與 AI Boost 1962 MHz（1762 MHz Boost Clock + 200 MHz OC）[2]。  \n- BYH 搭載 NVIDIA® GeForce RTX™ 5080 Laptop GPU，16GB GDDR7，最大顯示效能為 175W（Dynamic Boost）與 AI Boost 1902 MHz（1702 MHz Boost Clock + 200 MHz OC）[2]。  \n\n因此，兩者在顯示晶片型號、記憶體容量、最大顯示效能（功耗與頻率）上均有明顯差異。",
+      "context": [
+        "row14",
+        "row02_variants",
+        "row15",
+        "row16",
+        "row06"
+      ],
+      "correct": true,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": true,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "BXH 跟 BYH 最大的規格差異在於顯示晶片型號與其相關規格：  \n- BXH 搭載 NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU，12GB GDDR7，最大顯示效能為 140W（Dynamic Boost）與 AI Boost 1962 MHz（1762 MHz Boost Clock + 200 MHz OC）[2]。  \n- BYH 搭載 NVIDIA® GeForce RTX™ 5080 Laptop GPU，16GB GDDR7，最大顯示效能為 175W（Dynamic Boost）與 AI Boost 1902 MHz（1702 MHz Boost Clock + 200 MHz OC）[2]。  \n\n因此，兩者在顯示晶片型號、記憶體容量、最大顯示效能（功耗與頻率）上均有明顯差異。",
+        "BXH 跟 BYH 最大的規格差異在於顯示晶片型號與其相關規格：  \n- BXH 搭載 NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU，12GB GDDR7，最大顯示功率為 140W，AI Boost 頻率為 1962 MHz（1762 MHz 基準 + 200 MHz OC）[2]。  \n- BYH 搭載 NVIDIA® GeForce RTX™ 5080 Laptop GPU，16GB GDDR7，最大顯示功率為 175W，AI Boost 頻率為 1902 MHz（1702 MHz 基準 + 200 MHz OC）[2]。  \n\n因此，兩者在顯示晶片型號、記憶體容量、最大顯示功率與 AI Boost 頻率上均有明顯差異。",
+        "BXH 跟 BYH 最大的規格差異在於顯示晶片型號與其相關規格：  \n- BXH 搭載 NVIDIA® GeForce RTX™ 5070 Ti Laptop GPU，12GB GDDR7，最大顯示效能為 140W（Dynamic Boost）與 AI Boost 1962 MHz（1762 MHz Boost Clock + 200 MHz OC）[2]。  \n- BYH 搭載 NVIDIA® GeForce RTX™ 5080 Laptop GPU，16GB GDDR7，最大顯示效能為 175W（Dynamic Boost）與 AI Boost 1902 MHz（1702 MHz Boost Clock + 200 MHz OC）[2]。  \n\n因此，兩者在顯示晶片型號、記憶體容量、最大顯示效能（功耗與頻率）上均有明顯差異。"
+      ],
+      "correct_runs": [
+        true,
+        true,
+        true
+      ],
+      "retrieval_ms": [
+        40.575799997895956,
+        60.96319999778643,
+        42.35589999007061
+      ],
+      "ttft_ms": [
+        355.6797999772243,
+        363.99490002077073,
+        369.31539996294305
+      ],
+      "e2e_ttft_ms": [
+        396.8738000257872,
+        425.58700003428385,
+        422.11799998767674
+      ],
+      "cache_tokens": [
+        440,
+        440,
+        440
+      ],
+      "prompt_tokens": 1075,
+      "completion_tokens": 203
+    },
+    {
+      "id": "h04",
+      "query": "RTX 5070 Ti 對應哪個 SKU？",
+      "lang": "mix",
+      "category": "sku",
+      "answer": "RTX 5070 Ti 對應的 SKU 是 BXH [1]。",
+      "context": [
+        "row02_BXH",
+        "overview"
+      ],
+      "correct": true,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": true,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "RTX 5070 Ti 對應的 SKU 是 BXH [1]。",
+        "RTX 5070 Ti 對應的 SKU 是 BXH [1]。",
+        "RTX 5070 Ti 對應的 SKU 是 BXH [1]。"
+      ],
+      "correct_runs": [
+        true,
+        true,
+        true
+      ],
+      "retrieval_ms": [
+        29.902899987064302,
+        29.12680001463741,
+        31.607499986421317
+      ],
+      "ttft_ms": [
+        271.6415000031702,
+        266.16649999050424,
+        290.48869997495785
+      ],
+      "e2e_ttft_ms": [
+        302.188900008332,
+        295.92840000987053,
+        322.6324000279419
+      ],
+      "cache_tokens": [
+        440,
+        440,
+        440
+      ],
+      "prompt_tokens": 903,
+      "completion_tokens": 21
+    },
+    {
+      "id": "h05",
+      "query": "Which model has the RTX 5080 GPU?",
+      "lang": "en",
+      "category": "sku",
+      "answer": "The model with the RTX 5080 GPU is AORUS MASTER 16 BYH [1].",
+      "context": [
+        "row02_BYH"
+      ],
+      "correct": true,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": true,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "The model with the RTX 5080 GPU is AORUS MASTER 16 BYH [1].",
+        "The model with the RTX 5080 GPU is AORUS MASTER 16 BYH [1].",
+        "The model with the RTX 5080 GPU is AORUS MASTER 16 BYH [1]."
+      ],
+      "correct_runs": [
+        true,
+        true,
+        true
+      ],
+      "retrieval_ms": [
+        26.219299994409084,
+        25.934599980246276,
+        27.918699954170734
+      ],
+      "ttft_ms": [
+        118.13130002701655,
+        103.69059996446595,
+        117.2433000174351
+      ],
+      "e2e_ttft_ms": [
+        144.87329998519272,
+        130.08560001617298,
+        145.6391999963671
+      ],
+      "cache_tokens": [
+        451,
+        451,
+        451
+      ],
+      "prompt_tokens": 580,
+      "completion_tokens": 26
+    },
+    {
+      "id": "h06",
+      "query": "Thunderbolt 在哪一側？",
+      "lang": "mix",
+      "category": "io",
+      "answer": "Thunderbolt 在左側為 Thunderbolt™5，右側為 Thunderbolt™4 [1]。",
+      "context": [
+        "row07"
+      ],
+      "correct": true,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": true,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "Thunderbolt 在左側為 Thunderbolt™5，右側為 Thunderbolt™4 [1]。",
+        "Thunderbolt 在左側為 Thunderbolt™5，右側為 Thunderbolt™4 [1]。",
+        "Thunderbolt 在左側為 Thunderbolt™5，右側為 Thunderbolt™4 [1]。"
+      ],
+      "correct_runs": [
+        true,
+        true,
+        true
+      ],
+      "retrieval_ms": [
+        21.375399956014007,
+        22.489700000733137,
+        24.410299956798553
+      ],
+      "ttft_ms": [
+        221.78550000535324,
+        212.59979996830225,
+        217.05219999421388
+      ],
+      "e2e_ttft_ms": [
+        243.71740000788122,
+        235.6916000135243,
+        241.97869998170063
+      ],
+      "cache_tokens": [
+        440,
+        440,
+        440
+      ],
+      "prompt_tokens": 779,
+      "completion_tokens": 23
+    },
+    {
+      "id": "h07",
+      "query": "右側有哪些連接埠？",
+      "lang": "zh",
+      "category": "io",
+      "answer": "右側有以下連接埠：  \n- 1 x Type-A 支援 USB3.2 Gen2  \n- 1 x Type-C 設備支援 Thunderbolt™4（支援 USB4、DisplayPort™ 1.4 與 Power Delivery 3.0）  \n- 1 x MicroSD（UHS-II）  \n- 1 x 音訊插孔（支援麥克風／耳機組合）  \n\n[1]",
+      "context": [
+        "row07"
+      ],
+      "correct": true,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": true,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "右側有以下連接埠：  \n- 1 x Type-A 支援 USB3.2 Gen2  \n- 1 x Type-C 設備支援 Thunderbolt™4（支援 USB4、DisplayPort™ 1.4 與 Power Delivery 3.0）  \n- 1 x MicroSD（UHS-II）  \n- 1 x 音訊插孔（支援麥克風／耳機組合）  \n\n[1]",
+        "右側有以下連接埠：  \n- 1 x Type-A 支援 USB3.2 Gen2  \n- 1 x Type-C 設備支援 Thunderbolt™4（支援 USB4、DisplayPort™ 1.4 與 Power Delivery 3.0）  \n- 1 x MicroSD（UHS-II）  \n- 1 x 音訊插孔（支援麥克風／耳機組合）  \n\n[1]",
+        "右側有以下連接埠：  \n- 1 x Type-A 支援 USB3.2 Gen2  \n- 1 x Type-C 設備支援 Thunderbolt™4（支援 USB4、DisplayPort™ 1.4 與 Power Delivery 3.0）  \n- 1 x MicroSD（UHS-II）  \n- 1 x 音訊插孔（支援麥克風／耳機組合）  \n\n[1]"
+      ],
+      "correct_runs": [
+        true,
+        true,
+        true
+      ],
+      "retrieval_ms": [
+        19.22550000017509,
+        22.527199995238334,
+        21.754999994300306
+      ],
+      "ttft_ms": [
+        41.90120002022013,
+        63.44050000188872,
+        47.724600008223206
+      ],
+      "e2e_ttft_ms": [
+        118.6215000343509,
+        145.21520002745092,
+        127.81949999043718
+      ],
+      "cache_tokens": [
+        755,
+        755,
+        755
+      ],
+      "prompt_tokens": 779,
+      "completion_tokens": 100
+    },
+    {
+      "id": "h08",
+      "query": "Does it support MicroSD 記憶卡？",
+      "lang": "mix",
+      "category": "mixed",
+      "answer": "是的，它支援 MicroSD 記憶卡。[2]",
+      "context": [
+        "row04",
+        "row07",
+        "overview",
+        "row02_variants",
+        "row10"
+      ],
+      "correct": true,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": true,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "是的，它支援 MicroSD 記憶卡。[2]",
+        "是的，它支援 MicroSD 記憶卡。[2]",
+        "是的，它支援 MicroSD 記憶卡。[2]"
+      ],
+      "correct_runs": [
+        true,
+        true,
+        true
+      ],
+      "retrieval_ms": [
+        28.337700001429766,
+        27.835400018375367,
+        26.928999985102564
+      ],
+      "ttft_ms": [
+        602.7354000252672,
+        610.6027999776416,
+        602.2303000208922
+      ],
+      "e2e_ttft_ms": [
+        671.565200027544,
+        679.1972999926656,
+        669.6936000371352
+      ],
+      "cache_tokens": [
+        462,
+        462,
+        462
+      ],
+      "prompt_tokens": 1540,
+      "completion_tokens": 17
+    },
+    {
+      "id": "h09",
+      "query": "99Wh 是否代表可以使用 99 小時？",
+      "lang": "mix",
+      "category": "hallucination_trap",
+      "answer": "99Wh 不代表可以使用 99 小時，因為電池使用時間取決於功耗與使用情境，如螢幕亮度、運行應用程式等，並非僅由電池容量決定。[1]",
+      "context": [
+        "row12"
+      ],
+      "correct": true,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": true,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "99Wh 不代表可以使用 99 小時，因為電池使用時間取決於功耗與使用情境，如螢幕亮度、運行應用程式等，並非僅由電池容量決定。[1]",
+        "99Wh 不代表可以使用 99 小時，因為電池使用時間取決於功耗與使用情境，如螢幕亮度、運行應用程式等，無法單從電池容量推算出使用時長 [1]。",
+        "99Wh 不代表可以使用 99 小時，因為電池使用時間取決於設備的功耗與使用情境，如螢幕亮度、運行應用程式等，因此實際使用時間會遠低於 99 小時 [1]。"
+      ],
+      "correct_runs": [
+        true,
+        true,
+        true
+      ],
+      "retrieval_ms": [
+        30.137999972794205,
+        32.769299985375255,
+        28.621899953577667
+      ],
+      "ttft_ms": [
+        64.0774000203237,
+        61.76990002859384,
+        60.18749997019768
+      ],
+      "e2e_ttft_ms": [
+        94.69639998860657,
+        95.11759999440983,
+        89.49189999839291
+      ],
+      "cache_tokens": [
+        462,
+        462,
+        462
+      ],
+      "prompt_tokens": 514,
+      "completion_tokens": 53
+    },
+    {
+      "id": "h10",
+      "query": "這台跑得動《黑神話：悟空》嗎？",
+      "lang": "zh",
+      "category": "hallucination_trap",
+      "answer": "這台筆電的顯示晶片規格從 RTX 5070 Ti 到 RTX 5090，皆為最新世代的 NVIDIA GeForce RTX 系列，支援 AI 加速與高階遊戲效能，且所有型號皆具備 175W 最大顯示核心功率（BZH、BYH）或 140W（BXH），搭配 GDDR7 記憶體與高頻運作，足以輕鬆運行《黑神話：悟空》這類高畫質、高設定的遊戲。[1]",
+      "context": [
+        "row02_variants",
+        "row00",
+        "row01",
+        "row06",
+        "row05"
+      ],
+      "correct": false,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": true,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "這台筆電的顯示晶片規格從 RTX 5070 Ti 到 RTX 5090，皆為最新世代的 NVIDIA GeForce RTX 系列，支援 AI 加速與高階遊戲效能，且所有型號皆具備 175W 最大顯示核心功率（BZH、BYH）或 140W（BXH），搭配 GDDR7 記憶體與高頻運作，足以輕鬆運行《黑神話：悟空》這類高畫質、高設定的遊戲。[1]",
+        "這台筆電的顯示晶片規格足以支援《黑神話：悟空》的運行，因為所有型號皆搭載 NVIDIA® GeForce RTX™ 系列顯示核心（RTX 5090、5080、5070 Ti），且皆支援 DLSS 3.0 及 RT 核心技術，這些技術能有效提升遊戲效能與畫質表現 [1]。然而，實際運行表現會依遊戲設定、畫面解析度、幀率需求及系統其他硬體（如 CPU、記憶體）而異。規格資料中未提及此資訊。",
+        "這台筆電的顯示晶片規格從 RTX 5070 Ti 到 RTX 5090，皆為最新一代的 NVIDIA GeForce RTX 系列，支援 Ray Tracing 與 AI 加速技術，且具備高記憶體容量（12GB 至 24GB GDDR7）與高動態功耗（最高 175W），足以輕鬆運行《黑神話：悟空》這類高畫質、高設定的遊戲。  \n[1]"
+      ],
+      "correct_runs": [
+        false,
+        true,
+        false
+      ],
+      "retrieval_ms": [
+        33.73299998929724,
+        39.40439998405054,
+        40.137199976015836
+      ],
+      "ttft_ms": [
+        413.3293000049889,
+        435.7597000198439,
+        424.21379999723285
+      ],
+      "e2e_ttft_ms": [
+        523.8185999915004,
+        553.4516000188887,
+        541.6024000151083
+      ],
+      "cache_tokens": [
+        440,
+        440,
+        440
+      ],
+      "prompt_tokens": 1161,
+      "completion_tokens": 129
+    },
+    {
+      "id": "h11",
+      "query": "CPU TDP 沒寫的話，可以從時脈推算嗎？",
+      "lang": "mix",
+      "category": "hallucination_trap",
+      "answer": "規格資料中未提及此資訊。",
+      "context": [
+        "row01",
+        "row02_variants",
+        "overview",
+        "row11"
+      ],
+      "correct": false,
+      "refused": true,
+      "false_refusal": false,
+      "violations": [],
+      "cited": false,
+      "citation_correct": null,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "規格資料中未提及此資訊。",
+        "規格資料中未提及此資訊。",
+        "規格資料中未提及此資訊。"
+      ],
+      "correct_runs": [
+        false,
+        false,
+        false
+      ],
+      "retrieval_ms": [
+        36.974199989344925,
+        39.9324000463821,
+        40.9236999694258
+      ],
+      "ttft_ms": [
+        462.0569000253454,
+        474.60110002430156,
+        448.1034000054933
+      ],
+      "e2e_ttft_ms": [
+        556.7321000271477,
+        573.6635000212118,
+        547.420000017155
+      ],
+      "cache_tokens": [
+        440,
+        440,
+        440
+      ],
+      "prompt_tokens": 1216,
+      "completion_tokens": 10
+    },
+    {
+      "id": "h12",
+      "query": "記憶體還能再加嗎？",
+      "lang": "zh",
+      "category": "colloquial",
+      "answer": "可以，記憶體還能再加，產品提供 2x SO-DIMM sockets for expansion，支援擴充記憶體至最高 64GB DDR5 5600MHz [1]。",
+      "context": [
+        "row04",
+        "overview",
+        "row05",
+        "row02_variants",
+        "row07"
+      ],
+      "correct": true,
+      "refused": false,
+      "false_refusal": false,
+      "violations": [],
+      "cited": true,
+      "citation_correct": true,
+      "bad_citations": [],
+      "simplified_chars": [],
+      "answers_all": [
+        "可以，記憶體還能再加，產品提供 2x SO-DIMM sockets for expansion，支援擴充記憶體至最高 64GB DDR5 5600MHz [1]。",
+        "可以，記憶體還能再加，產品提供 2x SO-DIMM sockets for expansion，支援擴充記憶體至最高 64GB DDR5 5600MHz [1]。",
+        "可以，記憶體還能再加，產品提供 2x SO-DIMM sockets for expansion，支援擴充記憶體至最高 64GB DDR5 5600MHz [1]。"
+      ],
+      "correct_runs": [
+        true,
+        true,
+        true
+      ],
+      "retrieval_ms": [
+        22.144499991554767,
+        24.189500021748245,
+        28.91799999633804
+      ],
+      "ttft_ms": [
+        654.9447000143118,
+        696.6618999722414,
+        659.8528000176884
+      ],
+      "e2e_ttft_ms": [
+        697.4587999866344,
+        742.0364000136033,
+        710.372900008224
+      ],
+      "cache_tokens": [
+        462,
+        462,
+        462
+      ],
+      "prompt_tokens": 1633,
+      "completion_tokens": 48
+    }
+  ],
+  "throughput": {
+    "runs": 5,
+    "tokens": 256,
+    "client_tps_mean": 52.58097056176115,
+    "client_tps_std": 0.8585606541894922,
+    "server_tps_mean": 52.580610669557075,
+    "server_tps_std": 0.858423744676935
+  },
+  "peak_vram_mib": 3125,
+  "summary": {
+    "stability": {
+      "passes": 3,
+      "per_pass_acc": [
+        0.8333333333333334,
+        0.9166666666666666,
+        0.8333333333333334
+      ],
+      "all_passes_correct": 10,
+      "unstable": [
+        "h10"
+      ]
+    },
+    "citation_correctness": 0.9090909090909091,
+    "citation_judged": 11,
+    "overall": {
+      "n": 12,
+      "acc": 0.8333333333333334
+    },
+    "answerable": {
+      "n": 12,
+      "acc": 0.8333333333333334
+    },
+    "unanswerable_refusal": null,
+    "false_refusal_rate": 0.0,
+    "by_category": {
+      "colloquial": {
+        "n": 1,
+        "acc": 1.0
+      },
+      "cross_field": {
+        "n": 2,
+        "acc": 1.0
+      },
+      "hallucination_trap": {
+        "n": 3,
+        "acc": 0.3333333333333333
+      },
+      "io": {
+        "n": 2,
+        "acc": 1.0
+      },
+      "mixed": {
+        "n": 1,
+        "acc": 1.0
+      },
+      "sku": {
+        "n": 3,
+        "acc": 1.0
+      }
+    },
+    "by_lang": {
+      "en": {
+        "n": 1,
+        "acc": 1.0
+      },
+      "mix": {
+        "n": 5,
+        "acc": 0.8
+      },
+      "zh": {
+        "n": 6,
+        "acc": 0.8333333333333334
+      }
+    },
+    "citation_rate": 0.9166666666666666,
+    "simplified_leak_rate": 0.0,
+    "latency_ms": {
+      "retrieval": {
+        "p50": 28.534999961266294,
+        "p95": 41.281749974587,
+        "mean": 30.555227766550768
+      },
+      "llm_ttft": {
+        "p50": 323.0842499760911,
+        "p95": 656.171725015156,
+        "mean": 338.1596750049438
+      },
+      "e2e_ttft": {
+        "p50": 382.1172500029206,
+        "p95": 700.6873249920318,
+        "mean": 400.3707222258931
+      }
+    },
+    "avg_prompt_tokens": 1036.5833333333333,
+    "avg_cached_prompt_tokens": 474.5,
+    "avg_completion_tokens": 75.41666666666667
+  }
+}
