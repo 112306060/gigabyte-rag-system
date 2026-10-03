@@ -1,7 +1,7 @@
 # Benchmark: final_qwen3-4b_v2_s2tw
 
 - date: 2026-10-02T14:27:50
-- generator: `C:\Users\user\Desktop\技嘉面試實作\models\Qwen3-4B-Instruct-2507-Q4_K_M.gguf`
+- generator: `Qwen3-4B-Instruct-2507-Q4_K_M.gguf`
 - config: prompt=v2, k=5, mode=hybrid, prune=True, repeat=3, traditional=True
 
 ## Retrieval (raw ranking, answerable questions)

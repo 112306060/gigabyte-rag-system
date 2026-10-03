@@ -1,7 +1,7 @@
 # Benchmark: qwen2.5-3b_prompt-v3
 
 - date: 2026-10-02T14:07:38
-- generator: `C:\Users\user\Desktop\技嘉面試實作\models\qwen2.5-3b-instruct-q4_k_m.gguf`
+- generator: `qwen2.5-3b-instruct-q4_k_m.gguf`
 - config: prompt=v3, k=5, mode=hybrid, prune=True, repeat=3, traditional=False
 
 ## Retrieval (raw ranking, answerable questions)

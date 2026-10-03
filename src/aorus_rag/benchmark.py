@@ -414,7 +414,9 @@ def main() -> None:
     res["calibration"] = calibration(rag.retriever, cases)
 
     if not args.skip_gen:
-        res["model"] = httpx.get("http://127.0.0.1:8080/v1/models").json()["data"][0]["id"]
+        # llama-server reports the model's full local path; keep only the file name
+        model_id = httpx.get("http://127.0.0.1:8080/v1/models").json()["data"][0]["id"]
+        res["model"] = model_id.replace("\\", "/").rsplit("/", 1)[-1]
         print(f"generation ({len(cases)} questions x {args.repeat}) ...")
         t0 = time.perf_counter()
         with VramSampler() as vram:

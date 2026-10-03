@@ -80,7 +80,7 @@
       0.531
     ]
   },
-  "model": "C:\\Users\\user\\Desktop\\技嘉面試實作\\models\\qwen2.5-3b-instruct-q4_k_m.gguf",
+  "model": "qwen2.5-3b-instruct-q4_k_m.gguf",
   "rows": [
     {
       "id": "q01",
