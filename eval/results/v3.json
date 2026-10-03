@@ -118,7 +118,9 @@
       "prompt_tokens": 907,
       "completion_tokens": 15,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q02",
@@ -160,7 +162,9 @@
       "prompt_tokens": 1173,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q03",
@@ -202,7 +206,9 @@
       "prompt_tokens": 1448,
       "completion_tokens": 19,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q04",
@@ -242,7 +248,9 @@
       "prompt_tokens": 1286,
       "completion_tokens": 18,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q05",
@@ -282,7 +290,9 @@
       "prompt_tokens": 1067,
       "completion_tokens": 14,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q06",
@@ -324,7 +334,9 @@
       "prompt_tokens": 1311,
       "completion_tokens": 12,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q07",
@@ -366,7 +378,9 @@
       "prompt_tokens": 1127,
       "completion_tokens": 25,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q08",
@@ -408,7 +422,9 @@
       "prompt_tokens": 1460,
       "completion_tokens": 13,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q09",
@@ -446,7 +462,9 @@
       "prompt_tokens": 583,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": true,
+      "violations": []
     },
     {
       "id": "q10",
@@ -484,7 +502,9 @@
       "prompt_tokens": 578,
       "completion_tokens": 27,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q11",
@@ -526,7 +546,9 @@
       "prompt_tokens": 1177,
       "completion_tokens": 14,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q12",
@@ -568,7 +590,9 @@
       "prompt_tokens": 1019,
       "completion_tokens": 29,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q13",
@@ -610,7 +634,9 @@
       "prompt_tokens": 1329,
       "completion_tokens": 17,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q14",
@@ -652,7 +678,9 @@
       "prompt_tokens": 1402,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q15",
@@ -691,7 +719,9 @@
       "prompt_tokens": 900,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q16",
@@ -731,7 +761,9 @@
       "prompt_tokens": 1279,
       "completion_tokens": 12,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q17",
@@ -771,7 +803,9 @@
       "prompt_tokens": 981,
       "completion_tokens": 22,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q18",
@@ -811,7 +845,9 @@
       "prompt_tokens": 1188,
       "completion_tokens": 14,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q19",
@@ -853,7 +889,9 @@
       "prompt_tokens": 981,
       "completion_tokens": 20,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q20",
@@ -895,7 +933,9 @@
       "prompt_tokens": 1463,
       "completion_tokens": 47,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q21",
@@ -937,7 +977,9 @@
       "prompt_tokens": 1439,
       "completion_tokens": 14,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q22",
@@ -979,7 +1021,9 @@
       "prompt_tokens": 1461,
       "completion_tokens": 9,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q23",
@@ -1020,7 +1064,9 @@
       "prompt_tokens": 1356,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q24",
@@ -1062,7 +1108,9 @@
       "prompt_tokens": 1692,
       "completion_tokens": 12,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q25",
@@ -1100,7 +1148,9 @@
       "prompt_tokens": 833,
       "completion_tokens": 11,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q26",
@@ -1138,7 +1188,9 @@
       "prompt_tokens": 687,
       "completion_tokens": 17,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q27",
@@ -1180,7 +1232,9 @@
       "prompt_tokens": 1289,
       "completion_tokens": 15,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q28",
@@ -1220,7 +1274,9 @@
       "prompt_tokens": 1028,
       "completion_tokens": 20,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q29",
@@ -1261,7 +1317,9 @@
       "prompt_tokens": 1101,
       "completion_tokens": 21,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q30",
@@ -1303,7 +1361,9 @@
       "prompt_tokens": 1351,
       "completion_tokens": 89,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q31",
@@ -1345,7 +1405,9 @@
       "prompt_tokens": 1445,
       "completion_tokens": 48,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q32",
@@ -1385,7 +1447,9 @@
       "prompt_tokens": 1016,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": true,
+      "violations": []
     },
     {
       "id": "q33",
@@ -1424,7 +1488,9 @@
       "prompt_tokens": 1002,
       "completion_tokens": 17,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q34",
@@ -1462,7 +1528,9 @@
       "prompt_tokens": 824,
       "completion_tokens": 12,
       "citation_correct": true,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q35",
@@ -1504,7 +1572,9 @@
       "prompt_tokens": 1682,
       "completion_tokens": 15,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q36",
@@ -1548,7 +1618,9 @@
       "prompt_tokens": 1588,
       "completion_tokens": 512,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q37",
@@ -1590,7 +1662,9 @@
       "prompt_tokens": 1301,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q38",
@@ -1630,7 +1704,9 @@
       "prompt_tokens": 1165,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q39",
@@ -1672,7 +1748,9 @@
       "prompt_tokens": 1437,
       "completion_tokens": 12,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q40",
@@ -1714,7 +1792,9 @@
       "prompt_tokens": 1207,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q41",
@@ -1756,7 +1836,9 @@
       "prompt_tokens": 1432,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     },
     {
       "id": "q42",
@@ -1798,7 +1880,9 @@
       "prompt_tokens": 1112,
       "completion_tokens": 10,
       "citation_correct": null,
-      "bad_citations": []
+      "bad_citations": [],
+      "false_refusal": false,
+      "violations": []
     }
   ],
   "throughput": {

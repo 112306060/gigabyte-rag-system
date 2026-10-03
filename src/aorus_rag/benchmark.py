@@ -28,6 +28,7 @@ import threading
 import time
 from collections import defaultdict
 from datetime import datetime
+from pathlib import Path
 
 import httpx
 import numpy as np
@@ -55,8 +56,8 @@ def norm(s: str) -> str:
     return re.sub(r"\s+", "", s.lower().replace("®", "").replace("™", ""))
 
 
-def load_cases() -> list[dict]:
-    return [json.loads(l) for l in GOLDEN.read_text(encoding="utf-8").splitlines() if l.strip()]
+def load_cases(path=GOLDEN) -> list[dict]:
+    return [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
 # ---------------------------------------------------------------- retrieval
@@ -149,14 +150,43 @@ def _supports(case: dict, chunk_id: str) -> bool:
     return any(any(_fact_present(alt, text) for alt in group) for group in case["must_include"])
 
 
+NEGATIONS = ["沒有", "沒", "無", "不", "非", "not", "no", "without"]
+NEGATION_WINDOW = 8  # characters (after norm) before a forbidden term that may negate it
+
+
+def _violations(case: dict, a: str) -> list[str]:
+    """Forbidden content found in the normalised answer.
+
+    Each must_not item is {"term": str, "unless_negated": bool}; a term is a substring or a
+    're:' regex. With unless_negated, an occurrence preceded by a negation within
+    NEGATION_WINDOW characters is allowed ("右側沒有 HDMI" is a correct answer).
+    """
+    found = []
+    for item in case.get("must_not", []):
+        term = item["term"]
+        pattern = term[3:] if term.startswith("re:") else re.escape(norm(term))
+        for m in re.finditer(pattern, a):
+            before = a[max(0, m.start() - NEGATION_WINDOW):m.start()]
+            if item.get("unless_negated") and any(n in before for n in NEGATIONS):
+                continue
+            found.append(m.group(0))
+            break
+    return found
+
+
 def grade(case: dict, answer: str, context: list[str]) -> dict:
     a = norm(answer)
     refused = any(m in a for m in REFUSAL_MARKERS)
+    violations = _violations(case, a)
     if case["gold_chunks"]:
-        facts_ok = all(any(_fact_present(alt, a) for alt in group) for group in case["must_include"])
-        correct = facts_ok and not refused
+        groups = case["must_include"]
+        hit = sum(any(_fact_present(alt, a) for alt in group) for group in groups)
+        facts_ok = hit >= case.get("min_match", len(groups))
+        # refusal_ok: the ideal answer itself says part of it is not listed (e.g. "99Wh is
+        # capacity, not hours; battery life is not listed"), so a refusal phrase is fine.
+        correct = facts_ok and (case.get("refusal_ok", False) or not refused) and not violations
     else:
-        correct = refused
+        correct = refused and not violations
 
     # Citation correctness: every [n] must point to an existing context chunk that supports
     # the answer. Only judged for answerable questions (a refusal has nothing to support).
@@ -166,6 +196,9 @@ def grade(case: dict, answer: str, context: list[str]) -> dict:
     return {
         "correct": correct,
         "refused": refused,
+        # a refusal phrase on an answerable question, unless the question allows it
+        "false_refusal": bool(case["gold_chunks"]) and refused and not case.get("refusal_ok", False),
+        "violations": violations,
         "cited": bool(cites),
         "citation_correct": citation_correct,
         "bad_citations": [[n, context[n - 1] if 1 <= n <= len(context) else None] for n in bad],
@@ -243,7 +276,7 @@ def summarize(rows: list[dict]) -> dict:
         "overall": acc(rows),
         "answerable": acc(answerable),
         "unanswerable_refusal": acc(r for r in rows if r["category"] == "unanswerable"),
-        "false_refusal_rate": sum(r["refused"] for r in answerable) / len(answerable),
+        "false_refusal_rate": sum(r.get("false_refusal", r["refused"]) for r in answerable) / len(answerable),
         "by_category": {k: acc(r for r in rows if r["category"] == k) for k in sorted({r["category"] for r in rows})},
         "by_lang": {k: acc(r for r in rows if r["lang"] == k) for k in sorted({r["lang"] for r in rows})},
         "citation_rate": sum(r["cited"] for r in answerable) / len(answerable),
@@ -296,18 +329,20 @@ def to_markdown(res: dict) -> str:
               f"avg {pc['avg_chunks']:.2f} chunks", ""]
 
     cal = res["calibration"]
-    L += ["## Top-1 cosine (threshold calibration)", "",
-          f"- answerable:   min {min(cal['answerable'])}, median {np.median(cal['answerable']):.3f}",
-          f"- unanswerable: max {max(cal['unanswerable'])}, values {cal['unanswerable']}", ""]
+    if cal.get("answerable") and cal.get("unanswerable"):
+        L += ["## Top-1 cosine (threshold calibration)", "",
+              f"- answerable:   min {min(cal['answerable'])}, median {np.median(cal['answerable']):.3f}",
+              f"- unanswerable: max {max(cal['unanswerable'])}, values {cal['unanswerable']}", ""]
 
     s = res.get("summary")
     if not s:
         return "\n".join(L)
     cite_ok = "—" if s.get("citation_correctness") is None else f"{s['citation_correctness']:.1%}"
+    refusal = "—" if not s.get("unanswerable_refusal") else f"{s['unanswerable_refusal']['acc']:.1%}"
     L += ["## Answer quality", "", "| metric | value |", "|---|---|",
           f"| overall accuracy | {s['overall']['acc']:.1%} ({s['overall']['n']} q) |",
           f"| answerable accuracy | {s['answerable']['acc']:.1%} |",
-          f"| unanswerable → correct refusal | {s['unanswerable_refusal']['acc']:.1%} |",
+          f"| unanswerable → correct refusal | {refusal} |",
           f"| false refusal (answerable) | {s['false_refusal_rate']:.1%} |",
           f"| citation compliance (has [n]) | {s['citation_rate']:.1%} |",
           f"| citation correctness (cited chunk supports answer) | {cite_ok} ({s.get('citation_judged', 0)} cited answers) |",
@@ -362,13 +397,15 @@ def main() -> None:
     p.add_argument("--repeat", type=int, default=3, help="runs per question for latency percentiles")
     p.add_argument("--prompt", default=DEFAULT_PROMPT, choices=sorted(PROMPT_RULES))
     p.add_argument("--no-traditional", action="store_true", help="disable OpenCC s2tw output conversion")
+    p.add_argument("--questions", default=str(GOLDEN), help="question set (default: eval/golden_qa.jsonl)")
     p.add_argument("--skip-gen", action="store_true")
     args = p.parse_args()
 
-    cases = load_cases()
+    cases = load_cases(Path(args.questions))
     rag = RAG(k=args.k, mode=args.mode, prune=not args.no_prune, prompt_version=args.prompt,
               traditional=not args.no_traditional)
     res = {"name": args.name, "date": datetime.now().isoformat(timespec="seconds"),
+           "questions": Path(args.questions).name,
            "config": {"k": args.k, "mode": args.mode, "prune": not args.no_prune, "repeat": args.repeat,
                       "prompt": args.prompt, "traditional": not args.no_traditional}}
 
