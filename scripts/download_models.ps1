@@ -26,8 +26,13 @@ foreach ($m in $models) {
     $out = Join-Path $dest $m.File
     if (Test-Path $out) { Write-Host "Skip (exists): $($m.File)"; continue }
     Write-Host "Downloading $($m.Repo)/$($m.File) ..."
-    # -C - : resume partial downloads
-    curl.exe -L --fail -C - -s -S -o $out "https://huggingface.co/$($m.Repo)/resolve/main/$($m.File)"
+    # Download to .part and rename only when complete: an interrupted download is resumed
+    # (-C -) on the next run instead of being skipped as if it were a finished model.
+    $prev = $ErrorActionPreference; $ErrorActionPreference = "Continue"
+    curl.exe -L --fail -C - -s -S -o "$out.part" "https://huggingface.co/$($m.Repo)/resolve/main/$($m.File)"
+    $code = $LASTEXITCODE; $ErrorActionPreference = $prev
+    if ($code -ne 0) { throw "download failed (curl exit $code): $($m.File) - rerun to resume" }
+    Move-Item "$out.part" $out -Force
 }
 
 Get-ChildItem $dest | ForEach-Object { "{0,-40} {1,8:N0} MB" -f $_.Name, ($_.Length / 1MB) }
