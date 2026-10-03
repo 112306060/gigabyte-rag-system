@@ -65,31 +65,54 @@ uv run aorus-rag -q "這台筆電多重？"
 ## 4. 系統架構
 
 ```mermaid
-%%{init: {"flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
-    subgraph OFF["Offline｜建立知識庫"]
-        direction TB
-        H["GIGABYTE 規格頁 HTML<br/>zh-TW / en-US"] --> P["Parser<br/>3 SKU × 17 欄位 = 51 Key-Value"]
-        P --> C["Structure-aware Chunking<br/>21 chunks"]
-        C --> E["BGE-M3 Embedding<br/>CPU"]
-        C --> S["BM25 Sparse Index"]
-        E --> V["Dense Vector Index"]
+
+    subgraph OFFLINE["Offline｜建立索引"]
+        direction LR
+
+        A["GIGABYTE 規格頁 HTML<br/>zh-TW / en-US"]
+        B["Parser<br/>3 SKU × 17 欄位"]
+        C["Structure-aware Chunking<br/>21 chunks / Alias"]
+
+        D["BGE-M3 Embedding<br/>CPU"]
+        E["Dense Vector Index"]
+
+        F["BM25<br/>Sparse Index"]
+
+        A --> B --> C
+        C --> D --> E
+        C --> F
     end
 
-    subgraph ON["Online｜RAG 問答"]
+    subgraph ONLINE["Online｜RAG 問答"]
         direction TB
-        Q["User Query<br/>繁中 / English / Mixed"] --> HR["Hybrid Retrieval<br/>Dense + BM25"]
-        HR --> RRF["RRF Fusion<br/>Context Pruning"]
-        RRF --> PB["Prompt Builder<br/>Context / Citation Rules"]
-        PB --> LLM["Qwen3-4B-Instruct-2507<br/>llama.cpp / GPU"]
-        LLM --> CC["OpenCC s2tw"]
-        CC --> A["Streaming Answer<br/>Citations"]
+
+        Q["User Query<br/>繁中 / English / Mixed"]
+
+        subgraph RETRIEVAL["Retrieval"]
+            direction LR
+            R["Hybrid Retrieval"]
+            G["RRF Fusion<br/>+ Context Pruning"]
+            P["Prompt Builder<br/>Context + Citation Rules"]
+
+            R --> G --> P
+        end
+
+        subgraph GENERATION["Generation"]
+            direction LR
+            L["Qwen3-4B-Instruct-2507<br/>llama.cpp · GPU"]
+            T["OpenCC s2tw"]
+            O["Streaming Answer<br/>+ Citations"]
+
+            L --> T --> O
+        end
+
+        Q --> R
+        P --> L
     end
 
-    V --> HR
-    S --> HR
-    V ~~~ Q
-    S ~~~ Q
+    E --> R
+    F --> R
 ```
 
 **核心模組**
