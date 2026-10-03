@@ -65,54 +65,22 @@ uv run aorus-rag -q "這台筆電多重？"
 ## 4. 系統架構
 
 ```mermaid
+%%{init: {"flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
 
-    subgraph OFFLINE["Offline｜建立索引"]
-        direction LR
+    A["GIGABYTE 規格頁 HTML<br/>zh-TW / en-US"]
+    B["資料處理<br/>Parser → Structure-aware Chunking (21 chunks)"]
+    C["知識索引<br/>BGE-M3 Dense Index (CPU) + BM25"]
+    D["Hybrid Retrieval<br/>RRF Fusion + Context Pruning"]
+    E["Generation<br/>Prompt → Qwen3-4B / llama.cpp GPU"]
+    F["Output<br/>OpenCC s2tw → Streaming Answer + Citations"]
 
-        A["GIGABYTE 規格頁 HTML<br/>zh-TW / en-US"]
-        B["Parser<br/>3 SKU × 17 欄位"]
-        C["Structure-aware Chunking<br/>21 chunks / Alias"]
+    Q["User Query<br/>繁中 / English / Mixed"]
 
-        D["BGE-M3 Embedding<br/>CPU"]
-        E["Dense Vector Index"]
-
-        F["BM25<br/>Sparse Index"]
-
-        A --> B --> C
-        C --> D --> E
-        C --> F
-    end
-
-    subgraph ONLINE["Online｜RAG 問答"]
-        direction TB
-
-        Q["User Query<br/>繁中 / English / Mixed"]
-
-        subgraph RETRIEVAL["Retrieval"]
-            direction LR
-            R["Hybrid Retrieval"]
-            G["RRF Fusion<br/>+ Context Pruning"]
-            P["Prompt Builder<br/>Context + Citation Rules"]
-
-            R --> G --> P
-        end
-
-        subgraph GENERATION["Generation"]
-            direction LR
-            L["Qwen3-4B-Instruct-2507<br/>llama.cpp · GPU"]
-            T["OpenCC s2tw"]
-            O["Streaming Answer<br/>+ Citations"]
-
-            L --> T --> O
-        end
-
-        Q --> R
-        P --> L
-    end
-
-    E --> R
-    F --> R
+    A --> B --> C
+    Q --> D
+    C --> D
+    D --> E --> F
 ```
 
 **核心模組**
