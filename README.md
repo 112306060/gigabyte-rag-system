@@ -65,24 +65,31 @@ uv run aorus-rag -q "這台筆電多重？"
 ## 4. 系統架構
 
 ```mermaid
-flowchart LR
-    subgraph offline["離線建索引"]
-        H["規格頁 HTML<br/>zh-TW + en-US"] --> P["parser.py<br/>51 筆 key-value"]
-        P --> C["chunker.py<br/>21 個 chunk"]
-        C --> E["bge-m3 embedding<br/>:8081 CPU"]
-        E --> V["index/vectors.npy"]
-        C --> B["bm25.py<br/>手寫 BM25"]
+flowchart TB
+    subgraph OFF["Offline｜建立知識庫"]
+        direction TB
+        H["GIGABYTE 規格頁 HTML<br/>zh-TW / en-US"] --> P["Parser<br/>3 SKU × 17 欄位 = 51 筆 Key-Value"]
+        P --> C["Structure-aware Chunking<br/>21 chunks｜去重 / SKU 拆分 / Alias"]
+        C --> E["BGE-M3 Embedding<br/>CPU"]
+        C --> S["BM25<br/>Sparse Index"]
+        E --> V["Dense Vector Index"]
     end
-    subgraph online["線上問答"]
-        Q["使用者問題"] --> R["retriever.py<br/>dense + BM25 → RRF → 後處理"]
-        V --> R
-        B --> R
-        R --> PR["prompt.py<br/>system 規則 + 編號 context"]
-        PR --> G["llama-server :8080 GPU<br/>Qwen3-4B 串流"]
-        G --> T["traditional.py<br/>OpenCC s2tw"]
-        T --> A["串流回答"]
+
+    subgraph ON["Online｜RAG 問答"]
+        direction TB
+        Q["User Query<br/>繁中 / English / Mixed"] --> HR["Hybrid Retrieval"]
+        HR --> RRF["RRF Fusion<br/>+ Context Pruning"]
+        RRF --> PB["Prompt Builder<br/>Context + Citation Rules"]
+        PB --> LLM["Qwen3-4B-Instruct-2507<br/>llama.cpp · GPU"]
+        LLM --> CC["OpenCC s2tw"]
+        CC --> A["Streaming Answer<br/>+ Citations"]
     end
+
+    V --> HR
+    S --> HR
 ```
+
+**核心模組**
 
 | 模組 | 職責 |
 |---|---|
